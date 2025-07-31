@@ -1,0 +1,50 @@
+@use '../../styles/variables.scss' as style;
+
+footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr auto;
+  grid-template-areas:
+    'nav nav data'
+    'c c c';
+  width: 100%;
+  min-height: 130px;
+  background-color: style.$secundary-color;
+  font-size: clamp(15px, 1vw, 25px);
+
+  nav {
+    grid-area: nav;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    border-right: 1px solid style.$tertiary-color;
+    margin-block: 10px;
+
+
+    h3 {
+      margin: 5px 5px 10px 5px;
+      text-align: center;
+    }
+
+    ul {
+      margin: 5px;
+    }
+  }
+
+  aside {
+    grid-area: data;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+
+  }
+
+  small {
+    grid-area: c;
+    display: flex;
+    justify-content: center;
+
+  }
+
+}

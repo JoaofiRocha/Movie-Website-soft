@@ -1,0 +1,15 @@
+@use './variables.scss' as style;
+
+
+@mixin color-shadow($color: style.$tertiary-color) {
+  filter: drop-shadow(0 0 10px $color);
+}
+
+.btn {
+  width: auto;
+  height: auto;
+  padding: auto;
+  margin: 5%;
+  border-radius: 80px;
+  @include color-shadow();
+}

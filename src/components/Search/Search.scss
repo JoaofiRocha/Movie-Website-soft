@@ -1,0 +1,42 @@
+@use '../../styles/variables.scss' as style;
+
+.search {
+  border-radius: 80px;
+  padding-inline: 15px;
+  border-color: style.$tertiary-color;
+  color: style.$tertiary-color;
+  background-color: style.$primary-color;
+  resize: none;
+  width: clamp(50px, 30vw, 230px);
+  height: 40px;
+  font-size: clamp(20px, 2.5vw, 25px);
+  white-space: nowrap;
+
+  &.--focus {
+    transition: all 0.3s ease;
+
+    &:focus {
+      width: clamp(180px, 32vw, 400px);
+      height: 45px;
+      outline: none;
+      font-size: clamp(22px, 3.2vw, 25px);
+      box-shadow: -20px 0 2em style.$detail-color2, 20px 0 2em style.$detail-color1;
+      ;
+    }
+  }
+
+  &.--large {
+    width: 80%;
+
+    &:focus {
+      width: 95%;
+    }
+  }
+}
+
+.search-results{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}

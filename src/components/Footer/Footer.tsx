@@ -1,5 +1,8 @@
+import './Footer.scss';
+
 const Footer = () => {
-    return (<footer>
+    return (
+    <footer>
         <nav>
             <section>
                 <h3>Navigation</h3>

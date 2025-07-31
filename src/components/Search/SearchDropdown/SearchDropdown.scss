@@ -1,0 +1,49 @@
+@use '../../../styles/variables.scss' as style;
+
+.search__dropdown {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 90%;
+    border-radius: 90px;
+    margin: 5px;
+    padding: 0px;
+
+
+    li{
+        width: 100%;
+        background-color: style.$secundary-color;
+        align-items: start;
+        display: flex;
+        border-radius: 90px;
+
+        &:hover {
+            background-color: style.$secondary-color-light;
+            box-shadow: -20px 0 2em style.$detail-color2, 20px 0 2em style.$detail-color1;
+        }
+
+
+    }
+
+    &__item {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        padding-inline-end: 1vw;
+        box-sizing: border-box;
+
+        .title{
+            width: 80%;
+        }
+
+        .item{
+            margin: auto;
+        }
+    }
+
+
+    Link{
+        width: 100%;
+    }
+}

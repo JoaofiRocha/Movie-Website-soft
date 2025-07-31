@@ -1,7 +1,7 @@
 import './App.scss'
 import { Routes, Route } from 'react-router-dom'
-import Home from './Pages/Home'
-import Layout from './Components/Layout';
+import Home from './pages/Home'
+import Layout from './components/Layout/Layout';
 
 function App() {
   return (
