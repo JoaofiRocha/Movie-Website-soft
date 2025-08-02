@@ -1,4 +1,4 @@
-import { fetchPopularMovies } from '../../services/tmdbAPI';
+import { fetchPopularMovies, fetchBackDrop } from '../../services/tmdbAPI';
 import type { Movie } from '../../types/types';
 import { useState, useEffect } from 'react';
 import { getTMDBImageUrl, getStarsRating } from '../../util/tmdb';
@@ -8,13 +8,16 @@ import { mapTMDBMovie } from '../../services/mappers';
 
 const DisplayMovie = () => {
     const [movie, setMovie] = useState<Movie>();
+    const popularMovie = Math.floor(Math.random() * (11));
 
     useEffect(() => {
         const getMovies = async () => {
             if (movie) return;
             const popularMovies = await fetchPopularMovies();
             if (popularMovies && popularMovies.length > 0) {
-                setMovie(mapTMDBMovie(popularMovies[0]));
+                const backdrop = await fetchBackDrop(popularMovies[popularMovie].id);
+                const mappedMovie = mapTMDBMovie(popularMovies[popularMovie]);
+                setMovie({ ...mappedMovie, poster_path: backdrop });
             }
         };
 
@@ -28,17 +31,20 @@ const DisplayMovie = () => {
                 <Link to={`/movie/${movie.id}`} className='link'>
                     <figure className='display-movie__card'>
                         <img
-                            src={getTMDBImageUrl(movie.poster_path, 'w400')} alt={'popular movie poster'}/>
+                            src={getTMDBImageUrl(movie.poster_path, 'original')} alt={'popular movie poster'} />
                         <figcaption className='image-caption'>
                             <h3 className='movie-title'>{movie.title}</h3>
                             <section className='movie-info'>
-                                <p>{movie.release_year}</p> 
-                                <p>{getStarsRating(movie.rating)} ({movie.rating})</p>
+                                <p>{movie.release_year}</p>
+                                <p>
+                                    {getStarsRating(movie.rating)}
+                                    ({movie.rating})
+                                </p>
                             </section>
-                            
+
                             <p className='movie-overview'>{movie.overview}</p>
-                            
-                            
+
+
                         </figcaption>
                     </figure>
                 </Link>

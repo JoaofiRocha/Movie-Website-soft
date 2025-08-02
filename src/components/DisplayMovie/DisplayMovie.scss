@@ -1,15 +1,20 @@
 @use '../../styles/variables.scss' as style;
 
 .display-movie {
-
     border-radius: 2em;
     background-color: style.$secondary-color-light;
     margin-inline: 10%;
+    min-height: clamp(10vw,800px,35vw);
     width: 85%;
-    height: 400px;
+    margin-top: 150px;
     transition: all 0.3s ease;
 
-    &:hover{
+    @media (max-width: 800px) {
+        min-height: 260px;
+        padding-bottom: 1em;
+    }
+
+    &:hover {
         box-shadow: -0.5em 0 2em style.$detail-color2, 0.5em 0 2em style.$detail-color1;
         transform: scale(1.05);
     }
@@ -17,14 +22,33 @@
 
     img {
         border-radius: 2em;
-        max-height: 90%;
-        box-shadow: -0.5em 0 2em style.$detail-color2, 0.5em 0 2em style.$detail-color1;
+        max-height: 100%;
+        position: absolute;
+        width: 100%;
+        object-fit: cover;
+        z-index: 0;
     }
+
 
     &__card {
         display: flex;
         flex-direction: row;
         height: 100%;
+        position: relative;
+        padding: 0;
+        margin: 0;
+
+        &::after {
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(to top,
+                        style.$secondary-color-light 10%,
+                        transparent 100%);
+                z-index: 1;
+                border-radius: 2em;
+            }
 
         .image-caption {
             display: flex;
@@ -36,9 +60,14 @@
             max-height: 95%;
             margin-left: 3em;
             color: style.$tertiary-color;
+            position: relative;
+            z-index: 2;
+            width: 10%;
+            margin: 2em;
 
 
             .movie-title {
+                margin-top: 3em;
                 margin: 0;
                 font-size: clamp(1.5em, 4vw, 4em);
             }
@@ -54,45 +83,12 @@
             p {
                 font-size: clamp(0.5em, 2vw, 1.2em);
             }
-        }
-
-
-
-        @media (max-width: 767px) {
-            position: relative;
-
-            img {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                z-index: 0;
-                box-shadow: none;
-            }
-
-            .image-caption {
-                position: relative;
-                z-index: 1;
-                width: 10%;
-                margin: 0;
-                background: linear-gradient(to top,
-                        style.$secondary-color-light 10%,
-                        transparent 100%);
-
-
-                .movie-title {
-                    margin: 0;
-                }
-            }
-
 
         }
+
     }
 
 
 
 
 }
-

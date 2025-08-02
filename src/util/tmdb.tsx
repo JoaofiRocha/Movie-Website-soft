@@ -2,19 +2,17 @@ export const getTMDBImageUrl = (path: string, size: string = 'w45') => {
     return `https://image.tmdb.org/t/p/${size}${path}`;
 };
 
-export const getStarsRating = (rating : number) => {
+export const getStarsRating = (rating: number) => {
     let string = '';
     let n = rating;
-    while(n > 0){
-        if(n > 1){
+    for (let i = 0; i < 10; i++) {
+        if (n > 0.5) {
             string += '★';
-            n= n-1;
+            n = n - 1;
         }
-        else{
+        else {
             string += '☆';
-            n = 0;
         }
     }
-
     return string;
 };

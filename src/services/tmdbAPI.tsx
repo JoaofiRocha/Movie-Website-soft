@@ -57,3 +57,13 @@ export const fetchMovieImages = async (id: number) => {
         console.log("Error fetchMovieImages: ", err);
     }
 }
+
+export const fetchBackDrop = async (id: number) => {
+    try{
+        const response = await fetchMovieImages(id);
+        return response.backdrops[0].file_path;
+    }
+    catch(err){
+        console.log('error fetching backdrops: ', err);
+    }
+}
