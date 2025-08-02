@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_KEY = 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2ZmI0YWYyY2ExNDgzMTMzOTI0NDM1ZDE2ZGI5NzllZSIsIm5iZiI6MTc1MjM3NzIzMy4xMzMsInN1YiI6IjY4NzMyNzkxYjhlNjg5YTc1OTU0MjgyNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.pUUCDvQ_V4d_uKKhqgyZpuuCNTvXOwT0yB5nvpFLDm4';
+const API_KEY = `Bearer ${import.meta.env.VITE_TMDB_API_KEY}`;
 
 
 export const fetchPopularMovies = async () => {
@@ -21,7 +21,7 @@ export const fetchPopularMovies = async () => {
     }
 }
 
-export const fetchMovie = async (name : string) => {
+export const fetchMovie = async (name: string) => {
     try {
         const response = await axios.request({
             method: 'GET',
@@ -34,7 +34,26 @@ export const fetchMovie = async (name : string) => {
         });
         return response.data.results;
     }
-    catch(error){
+    catch (error) {
         console.error("Error fetching popular movies:", error);
+    }
+}
+
+
+export const fetchMovieImages = async (id: number) => {
+    try {
+        const response = await axios.request({
+            method: 'GET',
+            url: `https://api.themoviedb.org/3/movie/${id}/images`,
+            headers: {
+                accept: 'application/json',
+                Authorization: API_KEY
+            }
+        });
+
+        return response.data
+    }
+    catch (err) {
+        console.log("Error fetchMovieImages: ", err);
     }
 }

@@ -1,11 +1,11 @@
 import { create } from 'zustand';
 
-interface SearchI {
-  search: string;
-  setSearch: (value: string) => void;
+interface SearchStore {
+  query: string;
+  setQuery: (value: string) => void;
 }
 
-export const useSearchStore = create<SearchI>((set) => ({
-  search: '',
-  setSearch: (value) => set({ search: value }),
+export const useSearchStore = create<SearchStore>((set) => ({
+  query: '',
+  setQuery: (value) => set({ query: value }),
 }));

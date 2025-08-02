@@ -4,5 +4,6 @@ export interface Movie {
     release_year: string,
     rating: number,
     title: string,
-    popularity: number
+    popularity: number,
+    overview: string
 }

@@ -7,7 +7,8 @@ export function mapTMDBMovie(data: any): Movie {
         poster_path: data.poster_path,
         rating: data.vote_average,
         release_year: data.release_date ? data.release_date.split('-')[0] : '',
-        popularity: data.popularity
+        popularity: data.popularity,
+        overview: data.overview
     };
 }
 

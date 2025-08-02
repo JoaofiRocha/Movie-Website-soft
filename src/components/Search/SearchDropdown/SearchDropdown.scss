@@ -5,7 +5,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    width: 90%;
+    width: 95%;
     border-radius: 90px;
     margin: 5px;
     padding: 0px;
@@ -21,6 +21,7 @@
         &:hover {
             background-color: style.$secondary-color-light;
             box-shadow: -20px 0 2em style.$detail-color2, 20px 0 2em style.$detail-color1;
+            transform: scale(1.05);
         }
 
 
@@ -33,7 +34,16 @@
         padding-inline-end: 1vw;
         box-sizing: border-box;
 
+        img{
+            border-radius: 1em;
+        }
+
+        .no-image{
+            padding-inline: 1em;
+        }
+
         .title{
+            padding-left: 1em;
             width: 80%;
         }
 

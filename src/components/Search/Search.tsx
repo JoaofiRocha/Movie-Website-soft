@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef, useImperativeHandle } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import './Search.scss';
 import SearchDropdown from './SearchDropdown/SearchDropdown';
 import type { Movie } from '../../types/types';
@@ -6,6 +6,7 @@ import { fetchMovie } from '../../services/tmdbAPI';
 import { mapTMDBMovies } from '../../services/mappers';
 import { debounce } from 'lodash';
 import { useNavigate } from 'react-router-dom';
+import { useSearchStore } from '../../store/useSearchStore';
 
 interface Props {
     setSearch?: (value: string) => void;
@@ -17,7 +18,9 @@ interface Props {
 
 
 const Search = ({ setSearch, placeholder = "", className = "", type = "bar" }: Props) => {
-    const [query, setQuery] = useState<string>("");
+    const query = useSearchStore((state) => state.query);
+    const setQuery = useSearchStore((state) => state.setQuery);
+
     const [movies, setMovies] = useState<Movie[]>([]);
     const inputRef = useRef<HTMLInputElement>(null);
     const [showDropdown, setShowDropdown] = useState(false);
@@ -28,7 +31,7 @@ const Search = ({ setSearch, placeholder = "", className = "", type = "bar" }: P
         const data = await fetchMovie(query);
         const res = mapTMDBMovies(data);
         setMovies(res);
-    }, 1500), [])
+    }, 1000), [])
 
 
     useEffect(() => {
@@ -47,24 +50,30 @@ const Search = ({ setSearch, placeholder = "", className = "", type = "bar" }: P
         <form className='search-results' onSubmit={(e) => {
             e.preventDefault();
             if (type === "search" && query.trim() !== "") {
-                navigate(`/search/${query.trim()}`);
+                navigate('/search', {
+                    state: { query: query.trim() }
+                })
             }
         }}>
 
             <input
                 className={`search ${className}`}
+                value={query}
+                type='search'
+                autoCorrect='off'
                 onChange={(e) => {
                     if (type === "bar" && setSearch) {
                         setSearch(e.target.value);
                     }
-                    else if (type === "search") {
-                        setQuery(e.target.value);
-                    }
+
+                    setQuery(e.target.value);
+
                 }}
                 placeholder={placeholder}
                 onBlur={() => setShowDropdown(false)}
                 onFocus={() => setShowDropdown(true)}
                 ref={inputRef}
+
             />
 
 
