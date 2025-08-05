@@ -1,5 +1,3 @@
-import type { Movie } from '../../types/types';
-
 const MovieCard = ({movie} : {movie : string}) => {
     return(
         <section>

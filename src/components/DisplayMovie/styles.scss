@@ -8,11 +8,6 @@
   min-height: clamp(10vw, 800px, 35vw);
   transition: all 0.3s ease;
 
-  @media (max-width: 800px) {
-    min-height: 260px;
-    padding-bottom: 1em;
-  }
-
   &:hover {
     box-shadow: -0.5em 0 2em style.$detail-color2, 0.5em 0 2em style.$detail-color1;
     transform: scale(1.05);
@@ -73,12 +68,52 @@
       width: 100%;
     }
 
-    &-overview {
-      font-size: clamp(0.5em, 2vw, 1.2em);
-    }
-
     p {
       font-size: clamp(0.5em, 2vw, 1.2em);
+    }
+  }
+
+  @media (max-width: 800px) {
+    min-height: 260px;
+    padding-bottom: 1em;
+
+    &__image{
+      border-end-end-radius: 0;
+      border-end-start-radius: 0;
+    }
+
+    &__card::after{
+      border-end-end-radius: 1em;
+      border-end-start-radius: 1em;
+      background: linear-gradient(
+        to top,
+        style.$secondary-color-light 20%,
+        transparent 100%
+      );
+    }
+  }
+  
+  @media (max-width: 500px) {
+    min-height: 200px;
+    &__card::after{
+      background: linear-gradient(
+        to top,
+        rgba(style.$secondary-color-light, 1) 10%,
+        rgba(style.$secondary-color-light, 0.9) 40%,
+        transparent 100%
+      );
+    }
+
+    &__caption {
+      margin: 1em;
+      &-info {
+        font-size: clamp(0.5em, 20vw, 1.5em);
+      }
+
+      &-overview {
+        visibility: hidden;
+        display: none;
+      }
     }
   }
 }

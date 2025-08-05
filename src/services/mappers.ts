@@ -1,5 +1,3 @@
-import type { Movie } from '../types/types';
-
 interface DataI {
     id: number;
     title: string;

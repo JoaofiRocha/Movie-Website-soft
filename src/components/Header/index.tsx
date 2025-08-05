@@ -1,5 +1,5 @@
-import Search from '../Search/Search';
-import './Header.scss';
+import Search from '../Search';
+import './styles.scss';
 import { Link } from 'react-router-dom';
 
 const Header = () => {

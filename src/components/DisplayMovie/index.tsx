@@ -1,8 +1,7 @@
 import { fetchPopularMovies, fetchBackDrop } from '../../services/tmdbAPI';
-import type { Movie } from '../../types/types';
 import { useState, useEffect } from 'react';
 import { getTMDBImageUrl, getStarsRating } from '../../util/tmdb';
-import './DisplayMovie.scss';
+import './styles.module.scss';
 import { Link } from 'react-router-dom';
 import { mapTMDBMovie } from '../../services/mappers';
 

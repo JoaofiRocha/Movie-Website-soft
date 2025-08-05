@@ -12,5 +12,11 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
     globals: true
+  },
+  css: {
+    modules: {
+      localsConvention: 'camelCase',
+      generateScopedName: '[name]__[local]___[hash:base64:5]'
+    }
   }
 })

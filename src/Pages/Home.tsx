@@ -1,5 +1,5 @@
-import DisplayMovie from '../components/DisplayMovie/DisplayMovie';
-import MovieCard from '../components/MovieCard/MovieCard';
+import DisplayMovie from '../components/DisplayMovie';
+import MovieCard from '../components/MovieCard';
 import { useSearchStore } from '../store/useSearchStore';
 
 const Home = () => {

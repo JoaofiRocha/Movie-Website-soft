@@ -2,8 +2,7 @@ import { describe, test, expect, vi } from 'vitest';
 import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import type { Movie } from '../../../types/types';
-import SearchDropdown from './SearchDropdown';
+import SearchDropdown from '.';
 
 const mockMovies: Movie[] = [
     {

@@ -1,8 +1,7 @@
 
 import { getTMDBImageUrl } from "../../../util/tmdb"
-import './SearchDropdown.scss';
+import './styles.scss';
 import { Link } from 'react-router-dom';
-import type { Movie } from '../../../types/types';
 
 interface Props {
     movies: Movie[],

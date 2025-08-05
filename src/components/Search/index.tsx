@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
-import './Search.scss';
-import SearchDropdown from './SearchDropdown/SearchDropdown';
-import type { Movie } from '../../types/types';
+import './styles.scss';
+import SearchDropdown from './SearchDropdown';
 import { fetchMovie } from '../../services/tmdbAPI';
 import { mapTMDBMovies } from '../../services/mappers';
 import { debounce } from 'lodash';
