@@ -1,6 +1,6 @@
 @use '../../styles/variables.scss' as style;
 
-footer {
+.footer {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr auto;
@@ -12,14 +12,13 @@ footer {
   background-color: style.$secundary-color;
   font-size: clamp(15px, 1vw, 25px);
 
-  nav {
+  &__nav {
     grid-area: nav;
     display: flex;
     justify-content: space-around;
     align-items: flex-start;
     border-right: 1px solid style.$tertiary-color;
     margin-block: 10px;
-
 
     h3 {
       margin: 5px 5px 10px 5px;
@@ -31,20 +30,17 @@ footer {
     }
   }
 
-  aside {
+  &__data {
     grid-area: data;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
-
   }
 
-  small {
+  &__copyright {
     grid-area: c;
     display: flex;
     justify-content: center;
-
   }
-
 }

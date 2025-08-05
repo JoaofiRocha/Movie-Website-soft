@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import './Search.scss';
 import SearchDropdown from './SearchDropdown/SearchDropdown';
 import type { Movie } from '../../types/types';
@@ -27,14 +27,18 @@ const Search = ({ setSearch, placeholder = "", className = "", type = "bar" }: P
     const navigate = useNavigate();
 
 
-    const onDebounceSearch = useCallback(debounce(async (query: string) => {
-        const data = await fetchMovie(query);
-        const res = mapTMDBMovies(data);
-        setMovies(res);
-    }, 1000), [])
+
 
 
     useEffect(() => {
+
+        const onDebounceSearch = debounce(async (query: string) => {
+            const data = await fetchMovie(query);
+            const res = mapTMDBMovies(data);
+            setMovies(res);
+            console.log(res);
+        }, 500);
+
         if (type === "search") {
             if (query.trim() === "") {
 
@@ -43,11 +47,15 @@ const Search = ({ setSearch, placeholder = "", className = "", type = "bar" }: P
             }
             onDebounceSearch(query)
         }
-    }, [query])
+
+        return () => {
+            onDebounceSearch.cancel();
+        }
+    }, [query, type])
 
 
     return (
-        <form className='search-results' onSubmit={(e) => {
+        <form className='search-form' onSubmit={(e) => {
             e.preventDefault();
             if (type === "search" && query.trim() !== "") {
                 navigate('/search', {
@@ -61,6 +69,7 @@ const Search = ({ setSearch, placeholder = "", className = "", type = "bar" }: P
                 value={query}
                 type='search'
                 autoCorrect='off'
+                placeholder={placeholder}
                 onChange={(e) => {
                     if (type === "bar" && setSearch) {
                         setSearch(e.target.value);
@@ -69,8 +78,7 @@ const Search = ({ setSearch, placeholder = "", className = "", type = "bar" }: P
                     setQuery(e.target.value);
 
                 }}
-                placeholder={placeholder}
-                onBlur={() => setShowDropdown(false)}
+                onBlur={() => setTimeout(() => {setShowDropdown(false)}, 100)}
                 onFocus={() => setShowDropdown(true)}
                 ref={inputRef}
 
@@ -81,7 +89,7 @@ const Search = ({ setSearch, placeholder = "", className = "", type = "bar" }: P
 
             {
                 (type === "search" && showDropdown && movies.length > 0) && (
-                    <SearchDropdown movies={movies} />
+                    <SearchDropdown movies={movies} size='w45' />
                 )
             }
         </form >

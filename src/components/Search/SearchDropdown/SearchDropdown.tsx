@@ -12,16 +12,16 @@ interface Props {
 
 
 
-const SearchDropdown = (({ movies, size } : Props) => {
-    
+const SearchDropdown = (({ movies, size = 'w45' }: Props) => {
+
     return (
         <ul className="search__dropdown">
             {movies.map((e) => (
                 <li key={e.id}>
-                    <Link to={`/movie/${e.id}`} className="search__dropdown__item --focus --large">
+                    <Link to={`https://www.themoviedb.org/movie/${e.id}`} className="search__dropdown__item --focus --large">
                         {e.poster_path ?
-                         <img src={getTMDBImageUrl(e.poster_path, size)} alt="movie pic" /> : <p className='no-image'>X</p>}
-                        
+                            <img src={getTMDBImageUrl(e.poster_path, size)} alt={e.title} /> : <p className='no-image'>X</p>}
+
                         <h5 className="title">{e.title}</h5>
                         <h6 className='item'>{e.release_year}</h6>
                         <h6 className='item'>{e.rating}</h6>

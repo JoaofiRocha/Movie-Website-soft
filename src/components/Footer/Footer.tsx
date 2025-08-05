@@ -2,8 +2,8 @@ import './Footer.scss';
 
 const Footer = () => {
     return (
-    <footer>
-        <nav>
+    <footer className='footer'>
+        <nav className='footer__nav'>
             <section>
                 <h3>Navigation</h3>
                 <ul>
@@ -23,11 +23,11 @@ const Footer = () => {
         </nav>
 
 
-        <aside>
+        <section className='footer__data'>
             <p>Data provided by <a href="https://tmdb.org">TMDB</a></p>
-        </aside>
+        </section>
 
-        <small> &copy; 2025 Movie Website</small>
+        <small className='footer__copyright'> &copy; 2025 Movie Website</small>
     </footer>
     )
 }

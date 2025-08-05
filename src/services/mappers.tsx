@@ -1,6 +1,16 @@
 import type { Movie } from '../types/types';
 
-export function mapTMDBMovie(data: any): Movie {
+interface DataI {
+    id: number;
+    title: string;
+    poster_path: string;
+    vote_average: number;
+    release_date: string;
+    popularity: number;
+    overview: string;
+}
+
+export function mapTMDBMovie(data: DataI): Movie {
     return {
         id: data.id,
         title: data.title,
@@ -12,8 +22,10 @@ export function mapTMDBMovie(data: any): Movie {
     };
 }
 
-export function mapTMDBMovies(data: any): Movie[] {
-    let movies = Array.isArray(data) ? data.map((e: any) => mapTMDBMovie(e)) : [];
+export function mapTMDBMovies(data: DataI[]): Movie[] {
+if (!Array.isArray(data)) return [];
+
+    let movies : Movie[] = data.map((e: DataI) => mapTMDBMovie(e));
     movies = movies.sort((a, b) => b.popularity - a.popularity).slice(0, 5);
-    return movies
+    return movies;
 }

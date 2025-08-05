@@ -1,6 +1,9 @@
 import DisplayMovie from '../components/DisplayMovie/DisplayMovie';
+import MovieCard from '../components/MovieCard/MovieCard';
+import { useSearchStore } from '../store/useSearchStore';
 
 const Home = () => {
+    const search = useSearchStore((state => state.query));
 
 
 
@@ -8,9 +11,12 @@ const Home = () => {
     return (
         <main className="main-app">
             <DisplayMovie/>
-            <h1> Vamos Pesquisar por:   </h1>
+            <h1> Vamos Pesquisar por: {search} </h1>
+
+            <MovieCard movie="title" />
+
             <button className='btn'> Teste</button>
-            <textarea className='search --focus' placeholder='TEste'></textarea>
+            <textarea className='search --focus' placeholder='Teste'></textarea>
             <textarea>aa</textarea>
         </main>
     )

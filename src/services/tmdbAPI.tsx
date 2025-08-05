@@ -45,6 +45,7 @@ export const fetchMovieImages = async (id: number) => {
         const response = await axios.request({
             method: 'GET',
             url: `https://api.themoviedb.org/3/movie/${id}/images`,
+            params: {include_image_language: 'null'},
             headers: {
                 accept: 'application/json',
                 Authorization: API_KEY
