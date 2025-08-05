@@ -1,9 +1,9 @@
-import './styles.scss';
+import styles from './styles.module.scss';
 
 const Footer = () => {
     return (
-    <footer className='footer'>
-        <nav className='footer__nav'>
+    <footer className={styles.footer}>
+        <nav className={styles.footerNav}>
             <section>
                 <h3>Navigation</h3>
                 <ul>
@@ -23,11 +23,11 @@ const Footer = () => {
         </nav>
 
 
-        <section className='footer__data'>
+        <section className={styles.footerData}>
             <p>Data provided by <a href="https://tmdb.org">TMDB</a></p>
         </section>
 
-        <small className='footer__copyright'> &copy; 2025 Movie Website</small>
+        <small className={styles.footerCopyright}> &copy; 2025 Movie Website</small>
     </footer>
     )
 }

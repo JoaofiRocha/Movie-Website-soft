@@ -11,20 +11,19 @@
   height: 45px;
   font-size: clamp(20px, 2.5vw, 25px);
   white-space: nowrap;
+  }
 
-  &.--focus {
+  .focus {
     transition: all 0.3s ease;
 
     &:focus {
       transform: scale(1.01);
       outline: none;
-    //   font-size: clamp(22px, 3.2vw, 25px);
+      // font-size: clamp(22px, 3.2vw, 25px);
       box-shadow: -20px 0 2em style.$detail-color2, 20px 0 2em style.$detail-color1;
-      ;
     }
-  }
 
-  &.--large {
+  &.large {
     width: 80%;
 
     &:focus {
@@ -33,9 +32,10 @@
   }
 }
 
-.search-form{
+.form{
   display: flex;
   flex-direction: column;
   width: 100%;
   align-items: center;
+  height: 100%;
 }

@@ -1,7 +1,7 @@
 import { fetchPopularMovies, fetchBackDrop } from '../../services/tmdbAPI';
 import { useState, useEffect } from 'react';
 import { getTMDBImageUrl, getStarsRating } from '../../util/tmdb';
-import './styles.module.scss';
+import styles from './styles.module.scss';
 import { Link } from 'react-router-dom';
 import { mapTMDBMovie } from '../../services/mappers';
 
@@ -30,19 +30,19 @@ const DisplayMovie = () => {
 
 
     return (
-        <article className="display-movie">
+        <article className={styles.displayMovie}>
             {movie ? (
                 <Link to={`/movie/${movie.id}`}>
-                    <figure className='display-movie__card'>
+                    <figure className={styles.card}>
                         <img
                             src={getTMDBImageUrl(movie.poster_path, 'w1920_and_h800_multi_faces')}
                             alt={'popular movie poster'}
-                            className="display-movie__image"
+                            className={styles.image}
                         />
 
-                        <figcaption className='display-movie__caption'>
-                            <h3 className='display-movie__caption-title'>{movie.title}</h3>
-                            <section className='display-movie__caption-info'>
+                        <figcaption className={styles.caption}>
+                            <h3 className={styles.captionTitle}> {movie.title}</h3>
+                            <section className={styles.captionInfo}>
                                 <p>{movie.release_year}</p>
                                 <p>
                                     {getStarsRating(movie.rating)}
@@ -50,7 +50,7 @@ const DisplayMovie = () => {
                                 </p>
                             </section>
 
-                            <p className='display-movie__caption-overview'>{movie.overview}</p>
+                            <p className={styles.captionOverview}>{movie.overview}</p>
 
 
                         </figcaption>

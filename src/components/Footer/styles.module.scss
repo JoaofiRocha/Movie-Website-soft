@@ -12,7 +12,7 @@
   background-color: style.$secundary-color;
   font-size: clamp(15px, 1vw, 25px);
 
-  &__nav {
+  &Nav {
     grid-area: nav;
     display: flex;
     justify-content: space-around;
@@ -30,7 +30,7 @@
     }
   }
 
-  &__data {
+  &Data {
     grid-area: data;
     display: flex;
     justify-content: center;
@@ -38,7 +38,7 @@
     padding: 20px;
   }
 
-  &__copyright {
+  &Copyright {
     grid-area: c;
     display: flex;
     justify-content: center;

@@ -1,6 +1,6 @@
 @use '../../styles/variables.scss' as style;
 
-.display-movie {
+.displayMovie {
   border-radius: 2em;
   background-color: style.$secondary-color-light;
   margin: 3em auto;
@@ -13,7 +13,7 @@
     transform: scale(1.05);
   }
 
-  &__card {
+  .card {
     display: flex;
     flex-direction: row;
     height: 100%;
@@ -36,7 +36,7 @@
     }
   }
 
-  &__image {
+  .image {
     border-radius: 2em;
     max-height: 100%;
     position: absolute;
@@ -45,7 +45,7 @@
     z-index: 0;
   }
 
-  &__caption {
+  .caption {
     position: relative;
     z-index: 2;
     display: flex;
@@ -57,12 +57,12 @@
     margin: 2em;
     color: style.$tertiary-color;
 
-    &-title {
+    &Title {
       margin: 0;
       font-size: clamp(1.5em, 4vw, 4em);
     }
 
-    &-info {
+    &Info {
       display: flex;
       justify-content: space-between;
       width: 100%;
@@ -77,12 +77,12 @@
     min-height: 260px;
     padding-bottom: 1em;
 
-    &__image{
+    .image{
       border-end-end-radius: 0;
       border-end-start-radius: 0;
     }
 
-    &__card::after{
+    .card::after{
       border-end-end-radius: 1em;
       border-end-start-radius: 1em;
       background: linear-gradient(
@@ -95,7 +95,7 @@
   
   @media (max-width: 500px) {
     min-height: 200px;
-    &__card::after{
+    .card::after{
       background: linear-gradient(
         to top,
         rgba(style.$secondary-color-light, 1) 10%,
@@ -104,13 +104,13 @@
       );
     }
 
-    &__caption {
+    .caption {
       margin: 1em;
       &-info {
         font-size: clamp(0.5em, 20vw, 1.5em);
       }
 
-      &-overview {
+      &Overview {
         visibility: hidden;
         display: none;
       }

@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import './styles.scss';
+import styles from './styles.module.scss';
 import SearchDropdown from './SearchDropdown';
 import { fetchMovie } from '../../services/tmdbAPI';
 import { mapTMDBMovies } from '../../services/mappers';
@@ -10,13 +10,14 @@ import { useSearchStore } from '../../store/useSearchStore';
 interface Props {
     setSearch?: (value: string) => void;
     placeholder?: string;
-    className?: string;
+    hasFocus?: boolean;
+    isLarge?: boolean;
     type?: "bar" | "search";
 }
 
 
 
-const Search = ({ setSearch, placeholder = "", className = "", type = "bar" }: Props) => {
+const Search = ({ setSearch, placeholder = "", hasFocus, isLarge, type = "bar" }: Props) => {
     const query = useSearchStore((state) => state.query);
     const setQuery = useSearchStore((state) => state.setQuery);
 
@@ -52,9 +53,14 @@ const Search = ({ setSearch, placeholder = "", className = "", type = "bar" }: P
         }
     }, [query, type])
 
+    const searchClasses = [
+        styles.search,
+        isLarge ? styles.large : '',
+        hasFocus ? styles.focus : ''
+    ].join(' ');
 
     return (
-        <form className='search-form' onSubmit={(e) => {
+        <form className={styles.form} onSubmit={(e) => {
             e.preventDefault();
             if (type === "search" && query.trim() !== "") {
                 navigate('/search', {
@@ -64,7 +70,7 @@ const Search = ({ setSearch, placeholder = "", className = "", type = "bar" }: P
         }}>
 
             <input
-                className={`search ${className}`}
+                className={searchClasses}
                 value={query}
                 type='search'
                 autoCorrect='off'

@@ -1,6 +1,6 @@
 
 import { getTMDBImageUrl } from "../../../util/tmdb"
-import './styles.scss';
+import styles from './styles.module.scss';
 import { Link } from 'react-router-dom';
 
 interface Props {
@@ -14,16 +14,16 @@ interface Props {
 const SearchDropdown = (({ movies, size = 'w45' }: Props) => {
 
     return (
-        <ul className="search__dropdown">
+        <ul className={styles.dropdown}>
             {movies.map((e) => (
                 <li key={e.id}>
-                    <Link to={`https://www.themoviedb.org/movie/${e.id}`} className="search__dropdown__item --focus --large">
+                    <Link to={`https://www.themoviedb.org/movie/${e.id}`} className={styles.dropdownItem}>
                         {e.poster_path ?
-                            <img src={getTMDBImageUrl(e.poster_path, size)} alt={e.title} /> : <p className='no-image'>X</p>}
+                            <img src={getTMDBImageUrl(e.poster_path, size)} alt={e.title} /> : <p className={styles.noImage}>X</p>}
 
-                        <h5 className="title">{e.title}</h5>
-                        <h6 className='item'>{e.release_year}</h6>
-                        <h6 className='item'>{e.rating}</h6>
+                        <h5 className={styles.title}>{e.title}</h5>
+                        <h6 className={styles.item}>{e.release_year}</h6>
+                        <h6 className={styles.item}>{e.rating}</h6>
                     </Link>
                 </li>
             ))}
