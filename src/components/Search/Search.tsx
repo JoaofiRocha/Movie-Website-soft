@@ -78,7 +78,7 @@ const Search = ({ setSearch, placeholder = "", className = "", type = "bar" }: P
                     setQuery(e.target.value);
 
                 }}
-                onBlur={() => setTimeout(() => {setShowDropdown(false)}, 100)}
+                onBlur={() => setTimeout(() => {setShowDropdown(false)}, 1)}
                 onFocus={() => setShowDropdown(true)}
                 ref={inputRef}
 

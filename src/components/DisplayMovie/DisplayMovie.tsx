@@ -12,8 +12,8 @@ const DisplayMovie = () => {
     useEffect(() => {
         const getMovies = async () => {
             const popularMovies = await fetchPopularMovies();
-            // const movieIndex = Math.floor(Math.random() * (11));
-            const movieIndex = 1;
+            const movieIndex = Math.floor(Math.random() * (11));
+            // const movieIndex = 1;
 
             if (popularMovies && popularMovies.length > 0) {
                 const backdrop = await fetchBackDrop(popularMovies[movieIndex].id);
