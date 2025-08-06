@@ -14,6 +14,7 @@ const DisplayMovie = () => {
             const movieIndex = Math.floor(Math.random() * (11));
             // const movieIndex = 1;
 
+
             if (popularMovies && popularMovies.length > 0) {
                 const backdrop = await fetchBackDrop(popularMovies[movieIndex].id);
                 const mappedMovie = mapTMDBMovie(popularMovies[movieIndex]);
@@ -27,8 +28,6 @@ const DisplayMovie = () => {
 
         getMovies();
     }, []);
-
-
     return (
         <article className={styles.displayMovie}>
             {movie ? (

@@ -34,7 +34,7 @@ const Search = ({ setSearch, placeholder = "", hasFocus, isLarge, type = "bar" }
 
         const onDebounceSearch = debounce(async (query: string) => {
             const data = await fetchMovie(query);
-            const res = mapTMDBMovies(data);
+            const res = mapTMDBMovies(data,5);
             setMovies(res);
             console.log(res);
         }, 500);

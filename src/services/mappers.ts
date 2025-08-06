@@ -20,10 +20,15 @@ export function mapTMDBMovie(data: DataI): Movie {
     };
 }
 
-export function mapTMDBMovies(data: DataI[]): Movie[] {
+
+
+export function mapTMDBMovies(data: DataI[], limit?: number): Movie[] {
 if (!Array.isArray(data)) return [];
 
     let movies : Movie[] = data.map((e: DataI) => mapTMDBMovie(e));
-    movies = movies.sort((a, b) => b.popularity - a.popularity).slice(0, 5);
+    movies = movies.sort((a, b) => b.popularity - a.popularity);
+
+    if (limit)
+        return movies.slice(limit);
     return movies;
 }

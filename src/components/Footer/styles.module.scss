@@ -1,4 +1,4 @@
-@use '../../styles/variables.scss' as style;
+@use '../../theme/variables.scss' as theme;
 
 .footer {
   display: grid;
@@ -9,7 +9,7 @@
     'c c c';
   width: 100%;
   min-height: 130px;
-  background-color: style.$secundary-color;
+  background-color: theme.$secundary-color;
   font-size: clamp(15px, 1vw, 25px);
 
   &Nav {
@@ -17,7 +17,7 @@
     display: flex;
     justify-content: space-around;
     align-items: flex-start;
-    border-right: 1px solid style.$tertiary-color;
+    border-right: 1px solid theme.$tertiary-color;
     margin-block: 10px;
 
     h3 {

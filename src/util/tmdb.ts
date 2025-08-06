@@ -1,3 +1,5 @@
+import { genreList } from "./list";
+
 export const getTMDBImageUrl = (path: string, size: string = 'w45') => {
     return `https://image.tmdb.org/t/p/${size}${path}`;
 };
@@ -16,3 +18,13 @@ export const getStarsRating = (rating: number) => {
     }
     return string;
 };
+
+
+export function findGenres(genres: number[]){
+    return genres.map( g => findGenre(g));
+  }
+
+  export function findGenre(genre: number){
+    const found = genreList.find(g => g.id === genre);
+    return found ? found.name : undefined;
+  }

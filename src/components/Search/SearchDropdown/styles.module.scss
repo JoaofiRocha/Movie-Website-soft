@@ -1,4 +1,4 @@
-@use '../../../styles/variables.scss' as style;
+@use '../../../theme/variables.scss' as theme;
 
 .dropdown {
     display: flex;
@@ -13,14 +13,14 @@
 
     li {
         width: 100%;
-        background-color: style.$secundary-color;
+        background-color: theme.$secundary-color;
         align-items: start;
         display: flex;
         border-radius: 90px;
 
         &:hover {
-            background-color: style.$secondary-color-light;
-            box-shadow: -20px 0 2em style.$detail-color2, 20px 0 2em style.$detail-color1;
+            background-color: theme.$secondary-color-light;
+            box-shadow: -20px 0 2em theme.$detail-color2, 20px 0 2em theme.$detail-color1;
             transform: scale(1.01);
         }
     }

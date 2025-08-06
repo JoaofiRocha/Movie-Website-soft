@@ -1,15 +1,15 @@
-@use '../../styles/variables.scss' as style;
+@use '../../theme/variables.scss' as theme;
 
 .displayMovie {
   border-radius: 2em;
-  background-color: style.$secondary-color-light;
+  background-color: theme.$secondary-color-light;
   margin: 3em auto;
   width: 85%;
   min-height: clamp(10vw, 800px, 35vw);
   transition: all 0.3s ease;
 
   &:hover {
-    box-shadow: -0.5em 0 2em style.$detail-color2, 0.5em 0 2em style.$detail-color1;
+    box-shadow: -0.5em 0 2em theme.$detail-color2, 0.5em 0 2em theme.$detail-color1;
     transform: scale(1.05);
   }
 
@@ -29,7 +29,7 @@
       border-radius: 2em;
       background: linear-gradient(
         to top,
-        style.$secondary-color-light 10%,
+        theme.$secondary-color-light 10%,
         transparent 100%
       );
       z-index: 1;
@@ -55,7 +55,7 @@
     min-height: 90%;
     max-height: 95%;
     margin: 2em;
-    color: style.$tertiary-color;
+    color: theme.$tertiary-color;
 
     &Title {
       margin: 0;
@@ -87,7 +87,7 @@
       border-end-start-radius: 1em;
       background: linear-gradient(
         to top,
-        style.$secondary-color-light 20%,
+        theme.$secondary-color-light 20%,
         transparent 100%
       );
     }
@@ -98,14 +98,14 @@
     .card::after{
       background: linear-gradient(
         to top,
-        rgba(style.$secondary-color-light, 1) 10%,
-        rgba(style.$secondary-color-light, 0.9) 40%,
+        rgba(theme.$secondary-color-light, 1) 10%,
+        rgba(theme.$secondary-color-light, 0.9) 40%,
         transparent 100%
       );
     }
 
     .caption {
-      margin: 1em;
+      margin-inline: 1em;
       &-info {
         font-size: clamp(0.5em, 20vw, 1.5em);
       }

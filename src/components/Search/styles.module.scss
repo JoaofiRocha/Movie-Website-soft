@@ -1,11 +1,11 @@
-@use '../../styles/variables.scss' as style;
+@use '../../theme/variables.scss' as theme;
 
 .search {
   border-radius: 80px;
   padding-inline: 15px;
-  border-color: style.$tertiary-color;
-  color: style.$tertiary-color;
-  background-color: style.$primary-color;
+  border-color: theme.$tertiary-color;
+  color: theme.$tertiary-color;
+  background-color: rgba(theme.$primary-color, 0.7);
   resize: none;
   width: clamp(50px, 30vw, 230px);
   height: 45px;
@@ -20,7 +20,7 @@
       transform: scale(1.01);
       outline: none;
       // font-size: clamp(22px, 3.2vw, 25px);
-      box-shadow: -20px 0 2em style.$detail-color2, 20px 0 2em style.$detail-color1;
+      box-shadow: -20px 0 2em theme.$detail-color2, 20px 0 2em theme.$detail-color1;
     }
 
   &.large {
