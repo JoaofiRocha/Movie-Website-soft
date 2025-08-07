@@ -28,7 +28,53 @@ if (!Array.isArray(data)) return [];
     let movies : Movie[] = data.map((e: DataI) => mapTMDBMovie(e));
     movies = movies.sort((a, b) => b.popularity - a.popularity);
 
-    if (limit)
-        return movies.slice(limit);
+    if(limit){
+        return movies.slice(0,limit);
+    }
     return movies;
 }
+
+
+export function mapDetails(movie: any) : MovieDetail {
+    console.log(JSON.stringify(movie));
+    const content : MovieDetail = {
+        ...movie,
+        title: movie.title || movie.name,
+        similar: mapTMDBMovies(movie.similar.results),
+        cast: mapCast(movie.credits.cast),
+        };
+    console.log(content.similar);
+    return content;
+}
+
+export function mapCast(cast: any[]): Cast[] {
+    return cast.map((c) => ({
+        id: c.id,
+        name: c.name,
+        character: c.character,
+        profile_path: c.profile_path
+    })).slice(0,8);
+}
+
+
+
+// interface MovieDetail {
+//         id: number,
+//         backdrop_path: string,
+//         release_date?: string,
+//         first_air_date?: string,
+//         last_air_date?: string,
+//         episode_number?: number,
+//         number_of_seasons?: number,
+//         genres: Genres[],
+//         budget?: number,
+//         revenue?: number,
+//         runtime?: number,
+//         vote_average: number,
+//         imdb_id?: string,
+//         original_language: string,
+//         title: string,
+//         overview: string,
+//         cast: Cast[],
+//         similar: Movies[]
+//     }

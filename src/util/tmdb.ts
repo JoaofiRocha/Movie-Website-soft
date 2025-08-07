@@ -20,11 +20,13 @@ export const getStarsRating = (rating: number) => {
 };
 
 
-export function findGenres(genres: string[]){
-    return genres.map( g => findGenre(g));
-  }
+export function findGenres(genres: string[]) {
+    return genres.map(g => findGenre(g));
+}
 
-  export function findGenre(genre: string){
+export function findGenre(genre: string) {
     const found = movieGenreList.find(g => g.id === genre);
     return found ? found.name : undefined;
-  }
+}
+
+

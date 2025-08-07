@@ -44,7 +44,7 @@ const DisplayMovie = () => {
 
                         <figcaption className={styles.caption}>
                             <h3 className={styles.captionTitle}> {movie.title}</h3>
-                            <section className={styles.captionInfo}>
+                            <section className={styles.captionInformation}>
                                 <p>{movie.release_year}</p>
                                 <p>
                                     {getStarsRating(movie.rating)}

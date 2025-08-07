@@ -1,11 +1,30 @@
+@use '../../theme/variables.scss' as theme;
 
 .main{
-    height: 1000px;
     margin: auto;
-    padding: 10em;
+    padding-block: 10em;
 
-    &>*{
-        background-color: red;
-        width: 100%;
-    }
+    // &>*{
+    //     padding-inline: 5%;
+    //     background-color: red;
+    //     width: 90%;
+    // }
+}
+
+.castTitle{
+    width: 100%;
+    text-align: center;
+    background-color: theme.$secundary-color-light;
+    margin-bottom: 0;
+    padding-top: 1em;
+}
+
+.cast{
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+    margin: auto;
+    background-color: theme.$secundary-color-light;
+    padding-block: 2em;
 }

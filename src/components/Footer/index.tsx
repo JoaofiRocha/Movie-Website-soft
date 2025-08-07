@@ -5,16 +5,16 @@ const Footer = () => {
     <footer className={styles.footer}>
         <nav className={styles.footerNav}>
             <section>
-                <h3>Navigation</h3>
-                <ul>
+                <h3 className={styles.h3}>Navigation</h3>
+                <ul className={styles.ul}>
                     <li><a href="/">Home</a></li>
                     <li><a href="/profile">Profile</a></li>
                 </ul>
             </section>
 
             <section>
-                <h3>Account</h3>
-                <ul>
+                <h3 className={styles.h3}>Account</h3>
+                <ul className={styles.ul}>
                     <li><a href="/contact">Delete Account</a></li>
                     <li><a href="/help">Edit Account Data</a></li>
                 </ul>

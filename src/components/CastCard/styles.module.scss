@@ -1,0 +1,31 @@
+@use '../../theme/variables.scss' as theme;
+
+.border{
+    width: auto;
+    height: auto;
+    border-style: dotted;
+    background-color: theme.$secundary-color;
+    border-color: theme.$tertiary-color;
+    border-radius: 1em;
+    padding: 0.1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.characterName{
+    font-style: italic;
+}
+
+.texts{
+    margin: 0;
+}
+
+.image{
+    border-radius: 50em;
+    max-height: auto;
+    max-width: auto;
+    object-fit: cover;
+}

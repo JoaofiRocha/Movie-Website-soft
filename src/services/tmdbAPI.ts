@@ -1,3 +1,4 @@
+import { mapDetails } from './mappers';
 import axiosDefault from './axiosDefault';
 
 export const fetchPopularMovies = async (currentPage: number = 1) => {
@@ -61,13 +62,12 @@ export const fetchDiscover = async (genres: string[], page: number, type: string
     }
 }
 
-export const fetchDetails = async (id: number, type: string = 'movie') => {
+export const fetchDetails = async (id: string, type: string = 'movie') => {
     try {
         const response = await axiosDefault('GET', `${type}/${id}`, {
-            append_to_response: 'credits%2Csimilar'
+            append_to_response: 'credits,similar'
         })
-
-        return response;
+        return mapDetails(response);
     }
     catch (err) {
         console.log('error fetching backdrops: ', err);
