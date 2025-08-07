@@ -8,7 +8,12 @@ interface param {
     page?: string,
     query?: string,
     include_adult?: string,
-    include_image_language?: string
+    include_image_language?: string,
+    with_genres?: string,
+    sort_by?: string,
+    'vote_average.gte'?: string,
+    'vote_count.gte'?: string,
+    append_to_response?: string,
 }
 
 

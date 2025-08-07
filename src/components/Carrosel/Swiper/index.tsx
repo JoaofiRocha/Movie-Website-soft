@@ -3,7 +3,6 @@ import { Navigation, Pagination, Mousewheel, FreeMode} from 'swiper/modules';
 import 'swiper/scss/navigation';
 import 'swiper/scss/pagination';
 import 'swiper/scss/mousewheel';
-// import 'swiper/scss/freemode';
 import 'swiper/scss';
 
 import styles from './styles.module.scss';
@@ -13,14 +12,16 @@ import MovieCard from '../../MovieCard/index';
 interface prop{
     movies: Movie[],
     nearEnd?: () => void,
-    maxMovies?: number
+    maxMovies?: number,
+    ref?: React.RefObject<any>
+    type?: 'movie' | 'tv'
 }
 
 
-const Swipe = ({ movies, nearEnd, maxMovies = 1000}: prop) => {
+const Swipe = ({ movies, nearEnd, maxMovies = 1000, ref, type = 'movie'}: prop) => {
 
     return (
-        <section className={styles.section}>
+        <div className={styles.section}>
             <Swiper
                 modules={[Navigation, Pagination, Mousewheel, FreeMode]}
                 className={styles.carrosel}
@@ -35,11 +36,11 @@ const Swipe = ({ movies, nearEnd, maxMovies = 1000}: prop) => {
                         nearEnd();
 
                 }}
+                onSwiper={swiper => ref? ref.current = swiper : null}
                 breakpoints={{
                     0: {
                         slidesPerView: 2.5,
                         spaceBetween: 5,
-                        pagination: false,
                         navigation: false,
                         mousewheel:false
                     },
@@ -53,14 +54,14 @@ const Swipe = ({ movies, nearEnd, maxMovies = 1000}: prop) => {
                     }
                 }}
             >
-                {movies.map((movie, idx) => (
-                    <SwiperSlide className={styles.item} key={movie.id ?? idx}>
-                        <MovieCard movie={movie} />
+                {movies.map((movie) => (
+                    <SwiperSlide className={styles.item} key={movie.id} >
+                        <MovieCard movie={movie} type={type} />
                     </SwiperSlide>
                 ))}
 
             </Swiper>
-        </section>
+        </div>
     )
 }
 

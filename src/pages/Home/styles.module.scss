@@ -1,0 +1,12 @@
+@use '../../theme/variables.scss' as theme;
+
+.mainApp {
+    margin-block: 6em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: theme.$primary-color;
+    height: auto;
+    width: 100%;
+    box-sizing: border-box;
+}

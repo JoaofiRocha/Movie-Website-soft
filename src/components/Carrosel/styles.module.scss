@@ -1,0 +1,49 @@
+@use '../../theme/variables.scss' as theme;
+
+.area {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.buttonList {
+    width: 90%;
+    height: auto; 
+    margin: 0;
+    padding-inline: 1rem;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3em;
+
+
+}
+
+@media (max-width: 800px) {
+    .btn {
+        margin: 4px;
+        font-size: 0.9em;
+    }
+}
+
+
+.buttonPressed {
+    border-style: solid;
+    border-width: 5%;
+    border-color: theme.$tertiary-color;
+    background-color: theme.$secundary-color-light;
+
+    &:hover {
+        border-color: theme.$tertiary-color;
+    }
+
+}
+
+.buttonUnpressed {
+    border-style: none;
+    color: rgba(theme.$tertiary-color, 0.4);
+}

@@ -2,13 +2,14 @@
 
 .displayMovie {
     border-radius: 2em;
-    background-color: theme.$secondary-color-light;
-    margin: 3em auto;
+    background-color: theme.$secundary-color-light;
+    margin: 1em auto;
+    margin-bottom: 3em;
     width: 100%;
     transition: all 0.3s ease;
 
     &:hover {
-        box-shadow: -0.5em 0 2em theme.$detail-color2, 0.5em 0 2em theme.$detail-color1;
+        box-shadow: -0.5em 0 1em theme.$detail-color2, 0.5em 0 1em theme.$detail-color1;
         transform: scale(1.05);
     }
 
@@ -23,7 +24,8 @@
     }
 
     .image {
-        border-radius: 2em;
+        display: flex;
+        border-radius: 1.5rem;
         max-height: 100%;
         width: 100%;
     }

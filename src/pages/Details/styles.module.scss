@@ -1,0 +1,11 @@
+
+.main{
+    height: 1000px;
+    margin: auto;
+    padding: 10em;
+
+    &>*{
+        background-color: red;
+        width: 100%;
+    }
+}

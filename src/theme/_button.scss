@@ -2,14 +2,24 @@
 
 
 @mixin color-shadow($color: theme.$tertiary-color) {
-  filter: drop-shadow(0 0 10px $color);
+  filter: drop-shadow(0 0 0.5em $color);
 }
 
 .btn {
   width: auto;
   height: auto;
   padding: auto;
-  margin: 5%;
+  margin: 0.5rem;
   border-radius: 80px;
-  @include color-shadow();
+  color: theme.$tertiary-color;
+  background-color: theme.$secundary-color;
+  cursor: pointer;
+
+  &:hover{
+    transform: scale(1.05);
+    border-color: theme.$detail-color1;
+    border-style: solid;
+    @include color-shadow(theme.$detail-color2);
+  }
+  
 }
