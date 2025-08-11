@@ -4,6 +4,7 @@ interface DataI {
     poster_path: string;
     vote_average: number;
     release_date: string;
+    genre_ids: Genre[];
     popularity: number;
     overview: string;
 }
@@ -15,6 +16,7 @@ export function mapTMDBMovie(data: DataI): Movie {
         poster_path: data.poster_path,
         rating: data.vote_average,
         release_year: data.release_date ? data.release_date.split('-')[0] : '',
+        genres: data.genre_ids,
         popularity: data.popularity,
         overview: data.overview
     };
@@ -36,14 +38,12 @@ if (!Array.isArray(data)) return [];
 
 
 export function mapDetails(movie: any) : MovieDetail {
-    console.log(JSON.stringify(movie));
     const content : MovieDetail = {
         ...movie,
         title: movie.title || movie.name,
         similar: mapTMDBMovies(movie.similar.results),
         cast: mapCast(movie.credits.cast),
         };
-    console.log(content.similar);
     return content;
 }
 

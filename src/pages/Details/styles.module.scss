@@ -1,8 +1,10 @@
 @use '../../theme/variables.scss' as theme;
 
-.main{
+.main {
     margin: auto;
-    padding-block: 10em;
+    padding-bottom: 10em;
+    width: 100%;
+    color: theme.$tertiary-color;
 
     // &>*{
     //     padding-inline: 5%;
@@ -11,15 +13,24 @@
     // }
 }
 
-.castTitle{
+.castTitle {
     width: 100%;
     text-align: center;
     background-color: theme.$secundary-color-light;
     margin-bottom: 0;
     padding-top: 1em;
+    margin: 0;
 }
 
-.cast{
+.similarTitle {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0;
+    padding-top: 3em;
+    margin: 0;
+}
+
+.cast {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -29,3 +40,64 @@
     background-color: theme.$secundary-color-light;
     padding-block: 2em;
 }
+
+.top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: end;
+    width: 100%;
+    height: 600px;
+    background-image: linear-gradient(to top,
+            theme.$secundary-color-light 5%,
+            transparent 100%),
+        var(--background-image);
+    background-position: center;
+
+    .title {
+        font-size: 100px;
+        text-align: end;
+        padding-inline-end: 0.2em;
+        margin: 0;
+    }
+
+    .data {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    p {
+        padding-inline: 5em;
+        font-size: 20px;
+        font-weight: bold;
+        text-align: end;
+    }
+
+}
+
+.info{
+    background-color: theme.$secundary-color-light;
+    margin: 0;
+    padding: 3em 0 0 10em;
+    display: flex;
+    // justify-content: ;
+    
+    .overview{
+        font-size: 30px;
+    }
+    
+    .aside{
+        padding: 1em;
+        border-radius: 1em 0 0 1em;
+        margin-inline-start: 5em;
+        width: 100%;
+        min-width: 220px;
+        background-color: theme.$secundary-color;
+        display: flex;
+        flex-direction: column;
+        font-size: large;
+        
+    }
+}
+

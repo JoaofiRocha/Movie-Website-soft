@@ -2,7 +2,7 @@
 
 
 
-.btn {
+%btn {
   width: auto;
   height: auto;
   padding: auto;
@@ -16,7 +16,17 @@
     transform: scale(1.1);
     border-color: theme.$detail-color1;
   }
+}
 
+.btn{
+  @extend %btn;
+}
+
+.btnOff{
+  @extend %btn;
+  color: theme.$tertiary-color;
+  cursor: default;
+  pointer-events: none;
 }
 
 .button {

@@ -5,6 +5,7 @@ import Layout from './components/Layout';
 import Details from './pages/Details';
 import CreateAccount from './pages/CreateAccount';
 import Login from './pages/Login';
+import ErrorPage from './pages/ErrorPage';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="details/:type/:id" element={<Details />}/>
         <Route path="signup" element={<CreateAccount />}/>
         <Route path="login" element={<Login/>}/>
+        <Route path="*" element={<ErrorPage/>}/>
       </Route>
     </Routes>
   );

@@ -2,6 +2,7 @@ declare global {
     interface MovieDetail {
         id: number,
         backdrop_path: string,
+        poster_path: string,
         release_date?: string,
         first_air_date?: string,
         last_air_date?: string,

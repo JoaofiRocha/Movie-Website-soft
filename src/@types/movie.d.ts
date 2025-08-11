@@ -6,6 +6,7 @@ declare global {
         release_year: string,
         rating: number,
         title: string,
+        genres: number[],
         popularity: number,
         overview: string
     }

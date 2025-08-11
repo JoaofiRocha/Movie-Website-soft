@@ -1,6 +1,7 @@
 import { fetchPopularMovies, fetchBackDrop } from '../../services/tmdbAPI';
 import { useState, useEffect } from 'react';
-import { getTMDBImageUrl, getStarsRating } from '../../util/tmdb';
+import { getTMDBImageUrl, getStarsRating, findGenres } from '../../util/tmdb';
+import buttonStyles from '../../theme/_button.module.scss';
 import styles from './styles.module.scss';
 import { Link } from 'react-router-dom';
 import { mapTMDBMovie } from '../../services/mappers';
@@ -40,12 +41,15 @@ const DisplayMovie = () => {
                         />
                         <figcaption className={styles.caption}>
                             <h3 className={styles.captionTitle}> {movie.title}</h3>
-                            <section className={styles.captionInformation}>
-                                <p>{movie.release_year}</p>
-                                <p>
-                                    {getStarsRating(movie.rating)}
-                                    ({movie.rating})
-                                </p>
+                            <section >
+                                <div>{findGenres(movie.genres).map(g => <button className={buttonStyles.btnOff} disabled>{g}</button>)}</div>
+                                <div className={styles.captionInformation}>
+                                    <p>{movie.release_year}</p>
+                                    <p>
+                                        {getStarsRating(movie.rating)}
+                                        ({movie.rating})
+                                    </p>
+                                </div>
                             </section>
 
                             <p className={styles.captionOverview}>{movie.overview}</p>
