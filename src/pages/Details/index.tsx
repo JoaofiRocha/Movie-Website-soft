@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import styles from './styles.module.scss';
 import { useEffect, useState } from "react";
 import { fetchDetails } from "../../services/tmdbAPI";
@@ -34,9 +34,21 @@ const Details = () => {
                         <p>{content.runtime} min</p> </> : null}
 
                     <p>{content.tagline}</p>
-                    <p>{content.imdb_id}</p>
-                    <p>{content.budget ? `$${content.budget.toLocaleString()}` : 'N/A'}</p>
-                    <p>{content.revenue ? `$${content.revenue.toLocaleString()}` : 'N/A'}</p>
+                    {type === 'movie' ?
+                        <div>
+                            <a href={`https://www.imdb.com/title/${content.imdb_id}`}> IMDB </a>
+                            <p>{content.budget ? `$${content.budget.toLocaleString()}` : 'N/A'}</p>
+                            <p>{content.revenue ? `$${content.revenue.toLocaleString()}` : 'N/A'}</p>
+                        </div>
+                        :
+                        <div>
+                            <p>{content.episode_number}</p>
+                            <p>{content.number_of_seasons}</p>
+                            <p>{content.first_air_date}</p>
+                            <p>{content.last_air_date}</p>
+                        </div>
+                    }
+
 
                     <p>{content.status}</p>
                     <p>{content.original_language}</p>
@@ -45,11 +57,11 @@ const Details = () => {
                     <h2 className={styles.castTitle}>Cast</h2>
                     <div className={styles.cast}>
                         {content.cast.map(c => {
-                            return <CastCard cast={c}/>
+                            return <CastCard cast={c} />
                         })}
                     </div>
 
-                    {content.similar ? <Swipe movies={content.similar} /> : <h1>{JSON.stringify(content.similar)}</h1>}
+                    {content.similar ? <Swipe movies={content.similar} type={type === 'movie' || type === 'tv' ? type : undefined} /> : <h1>{JSON.stringify(content.similar)}</h1>}
 
 
 
@@ -63,6 +75,3 @@ const Details = () => {
 
 export default Details;
 
-// Remove this interface if you have imported MovieDetail from a types file.   cast: Cast[],
-//         similar: Movies[]
-//     }

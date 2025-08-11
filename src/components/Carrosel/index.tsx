@@ -2,6 +2,7 @@ import Swipe from "./Swiper";
 import { useEffect, useState, useRef } from 'react';
 import { fetchDiscover } from '../../services/tmdbAPI';
 import { mapTMDBMovies } from '../../services/mappers';
+import buttonStyles from '../../theme/_button.module.scss';
 import styles from './styles.module.scss';
 import { movieGenreList, tvGenreList } from "../../util/list";
 
@@ -72,7 +73,7 @@ const Carrosel = ({ type = 'movie' }: props) => {
                         key={g.id}
                         value={g.id}
                         onClick={e => updateGenres(e.currentTarget.value)}
-                        className={`btn ${styles.btn} ${isPressed ? styles.buttonPressed : styles.buttonUnpressed}`}
+                        className={`${buttonStyles.btn} ${styles.btn} ${isPressed ? styles.buttonPressed : styles.buttonUnpressed}`}
                     >
                         {g.name}
                     </button>

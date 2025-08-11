@@ -16,8 +16,8 @@ const SearchDropdown = (({ movies, size = 'w45' }: Props) => {
     return (
         <ul className={styles.dropdown}>
             {movies.map((e) => (
-                <li key={e.id}>
-                    <Link to={`https://www.themoviedb.org/movie/${e.id}`} className={styles.dropdownItem}>
+                <li key={e.id} className={styles.li}>
+                    <Link to={`details/movie/${e.id}`} className={styles.dropdownItem}>
                         {e.poster_path ?
                             <img src={getTMDBImageUrl(e.poster_path, size)} alt={e.title} /> : <p className={styles.noImage}>X</p>}
 

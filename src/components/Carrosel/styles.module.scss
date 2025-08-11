@@ -23,17 +23,11 @@
 
 }
 
-@media (max-width: 800px) {
-    .btn {
-        margin: 4px;
-        font-size: 0.9em;
-    }
-}
-
 
 .buttonPressed {
     border-style: solid;
     border-width: 5%;
+    color: rgba(theme.$tertiary-color, 1);
     border-color: theme.$tertiary-color;
     background-color: theme.$secundary-color-light;
 
@@ -46,4 +40,11 @@
 .buttonUnpressed {
     border-style: none;
     color: rgba(theme.$tertiary-color, 0.4);
+}
+
+@media (max-width: 800px) {
+    .btn {
+        margin: 4px;
+        font-size: 0.9em;
+    }
 }

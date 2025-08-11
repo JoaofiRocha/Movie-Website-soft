@@ -14,6 +14,8 @@ declare global {
         vote_average: number,
         imdb_id?: string,
         original_language: string,
+        tagline: string,
+        status: string,
         title: string,
         overview: string,
         cast: Cast[],

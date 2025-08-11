@@ -31,17 +31,13 @@ const DisplayMovie = () => {
     return (
         <article className={styles.displayMovie}>
             {movie ? (
-                <Link to={`/details/movie/${movie.id}`}>
+                <Link to={`/details/movie/${movie.id}`} className={styles.link}>
                     <figure className={styles.card}>
-                        
-                            <img
-                                src={getTMDBImageUrl(movie.poster_path, 'w1920_and_h800_multi_faces')}
-                                alt={'popular movie poster'}
-                                className={styles.image}
-                            />
-                            
-
-
+                        <img
+                            src={getTMDBImageUrl(movie.poster_path, 'w1920_and_h800_multi_faces')}
+                            alt={'popular movie poster'}
+                            className={styles.image}
+                        />
                         <figcaption className={styles.caption}>
                             <h3 className={styles.captionTitle}> {movie.title}</h3>
                             <section className={styles.captionInformation}>

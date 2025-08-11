@@ -1,7 +1,5 @@
 @use './theme/variables.scss' as theme;
 
-@use './theme/button';
-
 #root {
   color: theme.$tertiary-color;
   background-color: theme.$primary-color;

@@ -1,0 +1,33 @@
+@use './variables.scss' as theme;
+
+
+
+.btn {
+  width: auto;
+  height: auto;
+  padding: auto;
+  margin: 0.5rem;
+  border-radius: 80px;
+  border-style: solid;
+  background-color: theme.$secundary-color;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.1);
+    border-color: theme.$detail-color1;
+  }
+
+}
+
+.button {
+  margin-inline: 0.5em;
+  background-color: rgba(theme.$primary-color, 0.5);
+  border-color: theme.$tertiary-color;
+  cursor: pointer;
+
+
+  &:hover {
+    box-shadow: 0 0 1em theme.$tertiary-color;
+    border-color: theme.$tertiary-color;
+  }
+}

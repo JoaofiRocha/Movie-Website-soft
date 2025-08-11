@@ -7,13 +7,13 @@ interface Props {
     type?: 'movie' | 'tv';
 }
 
-const MovieCard = ({ movie: {id, poster_path}, type = 'movie'  }: Props) => {
+const MovieCard = ({ movie: {id, poster_path, title}, type = 'movie'  }: Props) => {
     return (
         <article className={styles.displayMovie}>
             <Link to={`/details/${type}/${id}`}>
                 <img
                     src={getTMDBImageUrl(poster_path, 'w400')}
-                    alt={'popular movie poster'}
+                    alt={title}
                     loading="lazy"
                     className={styles.image}
                 />

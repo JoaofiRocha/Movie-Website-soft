@@ -1,0 +1,96 @@
+@use '../../theme/variables.scss' as theme;
+
+.error {
+    padding: 0;
+    color: theme.$error-color;;
+    margin: 0;
+}
+
+.inputError {
+    border-color: theme.$error-color;
+    border-style: solid;
+    border-width: 0.2em;
+}
+
+
+
+
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 1000px;
+    width: 100%;
+    margin-top: 80px
+}
+
+.div {
+    height: auto;
+    border-style: solid;
+    border-radius: 1em;
+    border-color: theme.$secundary-color-light;
+    padding: 1em;
+    margin: 0.5em;
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    align-items: center;
+    background-color: theme.$secundary-color;
+
+    @media (max-width:500px){
+        width: 330px;
+    }
+}
+
+.messageDiv {
+    visibility: hidden;
+    width: 80%;
+
+    .message{
+        padding: 0;
+        margin: 0;
+        font-size: small;
+    }
+
+    &Error {
+        visibility: visible;
+        color: theme.$error-color;;
+    }
+}
+
+.input{
+    border-radius: 1em;
+    border-style: solid;
+    background-color: theme.$primary-color;
+    font-size: large;
+    height: 100%;
+    width: 7cm;
+    padding: 0.4em;
+}
+
+.label{
+    margin-bottom: 1em;
+    &:not(:first-of-type){
+        margin-top: 2em;
+    }
+}
+
+.submit{
+    height: 100%;
+    width: 30%;
+    margin: 2em;
+    margin-top:7em;
+    padding: 0.2em;
+    font-size: large;
+    border-radius: 1em;
+    background-color: rgba(theme.$primary-color,0.5);
+    border-color: theme.$tertiary-color;
+    cursor: pointer;
+
+    &:hover{
+        box-shadow: 0 0 0.5em theme.$tertiary-color;
+    }
+}
+
