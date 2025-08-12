@@ -18,8 +18,7 @@
     align-items: center;
     display: flex;
     flex-wrap: wrap;
-    gap: 0.3em;
-
+    gap: 0.3em;     
 
 }
 
@@ -33,6 +32,7 @@
 
     &:hover {
         border-color: theme.$tertiary-color;
+
     }
 
 }

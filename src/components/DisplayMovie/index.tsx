@@ -32,32 +32,26 @@ const DisplayMovie = () => {
     return (
         <article className={styles.displayMovie}>
             {movie ? (
-                <Link to={`/details/movie/${movie.id}`} className={styles.link}>
-                    <figure className={styles.card}>
-                        <img
-                            src={getTMDBImageUrl(movie.poster_path, 'w1920_and_h800_multi_faces')}
-                            alt={'popular movie poster'}
-                            className={styles.image}
-                        />
-                        <figcaption className={styles.caption}>
-                            <h3 className={styles.captionTitle}> {movie.title}</h3>
-                            <section >
-                                <div>{findGenres(movie.genres).map(g => <button className={buttonStyles.btnOff} disabled>{g}</button>)}</div>
-                                <div className={styles.captionInformation}>
-                                    <p>{movie.release_year}</p>
-                                    <p>
-                                        {getStarsRating(movie.rating)}
-                                        ({movie.rating})
-                                    </p>
-                                </div>
-                            </section>
+                <>
+                    <button className={`${buttonStyles.favorite} ${styles.button}`}>☆</button>
+                    <Link to={`/details/movie/${movie.id}`} className={styles.link} style={{ "--background-image": `url(${getTMDBImageUrl(movie.poster_path, 'w1920_and_h800_multi_faces')})` } as React.CSSProperties}>
 
-                            <p className={styles.captionOverview}>{movie.overview}</p>
+                        <h3 className={styles.captionTitle}> {movie.title}</h3>
+                        <section >
+                            <div>{findGenres(movie.genres).map(g => <button className={`${styles.captionButton} ${buttonStyles.btnTransparent} ${buttonStyles.btnOff}`} disabled>{g}</button>)}</div>
+                            <div className={styles.captionInformation}>
+                                <p>{movie.release_year}</p>
+                                <p>
+                                    {getStarsRating(movie.rating)}
+                                    ({movie.rating})
+                                </p>
+                            </div>
+                        </section>
 
+                        <p className={styles.captionOverview}>{movie.overview}</p>
 
-                        </figcaption>
-                    </figure>
-                </Link>
+                    </Link>
+                </>
             ) : (
                 <p>Loading...</p>
             )}

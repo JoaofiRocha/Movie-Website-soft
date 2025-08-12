@@ -54,7 +54,6 @@ export const fetchDiscover = async (genres: string[], page: number, type: string
             'vote_count.gte': '1',
         })
 
-        console.log(response.results);
         return response.results;
     }
     catch (err) {

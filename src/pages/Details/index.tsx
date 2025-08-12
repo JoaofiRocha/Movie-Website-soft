@@ -11,17 +11,22 @@ const Details = () => {
     const { type, id } = useParams();
     const [content, setContent] = useState<MovieDetail>();
 
+    const getContent = async () => {
+        if (!id)
+            return;
+
+        const response = await fetchDetails(id, type);
+        setContent(response);
+    }
+
     useEffect(() => {
-        const getContent = async () => {
-            if (!id)
-                return;
-
-            const response = await fetchDetails(id, type);
-            setContent(response);
-        }
-
-        getContent()
+        getContent();
     }, []);
+
+    useEffect(() => {
+        getContent();
+        window.scrollTo(0, 0);
+    }, [id]);
 
     return (
         <>
@@ -72,17 +77,17 @@ const Details = () => {
 
                     </div>
 
-
-
-
-
-
-                    <h2 className={styles.castTitle}>Cast</h2>
-                    <div className={styles.cast}>
-                        {content.cast.map(c => {
-                            return <CastCard cast={c} />
-                        })}
-                    </div>
+                    {content.cast.length !== 0 ?
+                        <>
+                            <h2 className={styles.castTitle}>Cast</h2>
+                            <div className={styles.cast}>
+                                {content.cast.map(c => {
+                                    return <CastCard cast={c} />
+                                })}
+                            </div>
+                        </>
+                        : null
+                    }
 
 
                     <h2 className={styles.similarTitle}>Similar Content</h2>

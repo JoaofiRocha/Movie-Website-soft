@@ -23,7 +23,6 @@ const Carrosel = ({ type = 'movie' }: props) => {
         const targetPage = page ?? currentPage + 1;
         setCurrentPage(targetPage);
 
-        console.log(type);
         const fetchedMovies = await fetchDiscover(genres, targetPage, type);
 
         if (fetchedMovies && fetchedMovies.length > 0) {
@@ -45,7 +44,6 @@ const Carrosel = ({ type = 'movie' }: props) => {
     useEffect(() => {
         const changeFilter = () => {
             setCurrentPage(0);
-            //clear cache
             getMovies(1, true);
         }
 

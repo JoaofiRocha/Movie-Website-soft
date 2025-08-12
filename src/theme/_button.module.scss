@@ -29,6 +29,24 @@
   pointer-events: none;
 }
 
+.btnTransparent{
+  @extend %btn;
+  background-color: rgba(theme.$secundary-color, 0.6);
+  border-color: rgba(theme.$tertiary-color, 0.1);
+  color: rgba(theme.$tertiary-color, 0.8);
+}
+
+.favorite{
+  border-radius: 2em;
+  padding: 0.5em;
+
+  &:hover{
+    transform: scale(1.1);
+    border: none;
+    box-shadow: 0 0 1em theme.$detail-color2;
+  }
+}
+
 .button {
   margin-inline: 0.5em;
   background-color: rgba(theme.$primary-color, 0.5);

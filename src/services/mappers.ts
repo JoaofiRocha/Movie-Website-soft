@@ -4,7 +4,7 @@ interface DataI {
     poster_path: string;
     vote_average: number;
     release_date: string;
-    genre_ids: Genre[];
+    genre_ids: number[];
     popularity: number;
     overview: string;
 }

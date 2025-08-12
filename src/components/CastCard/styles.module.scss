@@ -3,6 +3,7 @@
 .border{
     width: auto;
     height: auto;
+    min-width: 200px;
     border-style: dotted;
     background-color: theme.$secundary-color;
     border-color: theme.$tertiary-color;

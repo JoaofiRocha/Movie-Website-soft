@@ -12,7 +12,6 @@ export function getLocalUsers(): User[] | null {
 export function getLocalCurrentUser(): User | null {
     try {
         const storedUser = localStorage.getItem('currentUser');
-        console.log(storedUser);
         return storedUser ? JSON.parse(storedUser) : null;
     } catch (error) {
         return null;

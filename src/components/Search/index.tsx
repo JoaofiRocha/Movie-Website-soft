@@ -36,7 +36,6 @@ const Search = ({ setSearch, placeholder = "", hasFocus, isLarge, type = "bar" }
             const data = await fetchMovie(query);
             const res = mapTMDBMovies(data,5);
             setMovies(res);
-            console.log(res);
         }, 500);
 
         if (type === "search") {
