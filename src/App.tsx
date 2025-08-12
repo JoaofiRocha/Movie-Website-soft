@@ -6,6 +6,7 @@ import Details from './pages/Details';
 import CreateAccount from './pages/CreateAccount';
 import Login from './pages/Login';
 import ErrorPage from './pages/ErrorPage';
+import DeleteAccount from './pages/DeleteAccount';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="details/:type/:id" element={<Details />}/>
         <Route path="signup" element={<CreateAccount />}/>
         <Route path="login" element={<Login/>}/>
+        <Route path="settings/delete" element={<DeleteAccount/>}/>
         <Route path="*" element={<ErrorPage/>}/>
       </Route>
     </Routes>

@@ -22,6 +22,8 @@
     border-radius: 1em;
     background-color: theme.$secundary-color;
     font-size: 25px;
+    color: theme.$tertiary-color;
+    box-shadow: 0 0 0.2em theme.$tertiary-color;
 }
 
 .similarTitle {
@@ -54,6 +56,7 @@
             transparent 100%),
         var(--background-image);
     background-position: center;
+    background-size: cover;
 
     .title {
         font-size: 100px;

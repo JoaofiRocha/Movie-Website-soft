@@ -3,7 +3,7 @@ import { getLocalCurrentUser } from '../util/userStoreUtil';
 
 interface AccountStore {
     user: User | null;
-    setAccount: (data: User) => void;
+    setAccount: (data: User | null) => void;
     setAccountLocal: () => void;
     logout: () => void;
     getUserFavorites: () => number[];
@@ -12,7 +12,7 @@ interface AccountStore {
 export const useAccountStore = create<AccountStore>((set, get) => ({
     user: getLocalCurrentUser() ?? null,
     setAccount: (data) => set(() => {
-        localStorage.setItem('currentUser', JSON.stringify(data));
+        localStorage.setItem('currentUser', data ? JSON.stringify(data) : '');
         return { user: data};
     }),
     setAccountLocal: () => set({user: getLocalCurrentUser()}),

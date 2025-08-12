@@ -10,6 +10,7 @@
   border-radius: 80px;
   border-style: solid;
   background-color: theme.$secundary-color;
+  color: theme.$tertiary-color;
   cursor: pointer;
 
   &:hover {
@@ -39,6 +40,7 @@
 .favorite{
   border-radius: 2em;
   padding: 0.5em;
+  color: theme.$tertiary-color;
 
   &:hover{
     transform: scale(1.1);
@@ -51,6 +53,7 @@
   margin-inline: 0.5em;
   background-color: rgba(theme.$primary-color, 0.5);
   border-color: theme.$tertiary-color;
+  color: theme.$tertiary-color;
   cursor: pointer;
 
 

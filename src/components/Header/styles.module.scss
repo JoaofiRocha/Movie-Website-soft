@@ -67,6 +67,7 @@
 .dropdown {
   position: relative;
   display: inline-block;
+  
 
   &:hover {
     .dropdownContent{
@@ -80,6 +81,7 @@
 }
 
 .dropdownContent {
+  right: 0;
   visibility: hidden;
   position: absolute;
   background-color: theme.$secundary-color;
