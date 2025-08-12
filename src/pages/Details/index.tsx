@@ -32,12 +32,14 @@ const Details = () => {
                             '--background-image': `url(${getTMDBImageUrl(content.backdrop_path, 'w1920_and_h800_multi_faces')})`
                         } as React.CSSProperties}>
 
+                        <h1 className={styles.title}>{content.title}</h1>
                         <div className={styles.data}>
                             <p>{content.release_date?.split('-')[0] ?? `${content.first_air_date?.split('-')[0]} - ${content.last_air_date?.split('-')[0]}`}</p>
-                            {content.genres.map(genre => { return <button className={buttonStyles.btnOff} disabled>{genre.name}</button> })}
+                            <p>{content.runtime ? `${content.runtime} min` : `S ${content.number_of_seasons}`}</p>
+                            <div className={styles.buttonsDiv}>
+                                {content.genres.map(genre => { return <button className={buttonStyles.btnOff} disabled>{genre.name}</button> })}
+                            </div>
                         </div>
-                        <h1 className={styles.title}>{content.title}</h1>
-
                     </div>
 
 
@@ -46,7 +48,7 @@ const Details = () => {
                         <p className={styles.overview}>{content.overview}</p>
 
                         <aside className={styles.aside}>
-                            <button className={buttonStyles.button}>★</button>
+                            <button className={`${buttonStyles.button} ${styles.button}`}>★</button>
                             <p>{`${getStarsRating(content.vote_average)} (${content.vote_average})`}</p>
                             <p>{content.status}</p>
                             <p>Original Language: {content.original_language}</p>

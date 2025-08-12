@@ -53,7 +53,8 @@ export function mapCast(cast: any[]): Cast[] {
         name: c.name,
         character: c.character,
         profile_path: c.profile_path
-    })).slice(0,8);
+    }));
+    // .slice(0,8);
 }
 
 

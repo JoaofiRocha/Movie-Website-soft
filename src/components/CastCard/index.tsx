@@ -5,8 +5,8 @@ const castCard = ({cast}: {cast:Cast}) => {
     return (
         <div className={styles.border}>
             <img className={styles.image} src={getTMDBImageUrl(cast.profile_path, 'w200')} alt={cast.name} />
-            <p className={styles.texts}>{cast.name}</p>
-            <p className={`${styles.texts} ${styles.characterName}`}>{cast.character}</p>
+            <p className={styles.actor}>{cast.name}</p>
+            <p className={`${styles.character}`}>{cast.character}</p>
         </div>
     )
 };

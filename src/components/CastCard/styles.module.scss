@@ -15,12 +15,13 @@
     font-weight: bold;
 }
 
-.characterName{
-    font-style: italic;
+.actor, .character{
+    margin: 0;
 }
 
-.texts{
-    margin: 0;
+.character{
+    font-weight: lighter;
+    font-style: italic;
 }
 
 .image{
