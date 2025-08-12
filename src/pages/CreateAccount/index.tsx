@@ -23,8 +23,9 @@ const CreateAccount = () => {
 
     const onSubmit = (data: User) => {
         if (data && !doesUserExist(users, data)) {
-            addUser(data);
-            setAccount(data);
+            const completeUser = {...data, id:`id${(new Date()).getTime()}`, favorites: []}
+            addUser(completeUser);
+            setAccount(completeUser);
             setError(false);
             nav('/');
         }

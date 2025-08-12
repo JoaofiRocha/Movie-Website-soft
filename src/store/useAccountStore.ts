@@ -6,10 +6,11 @@ interface AccountStore {
     setAccount: (data: User) => void;
     setAccountLocal: () => void;
     logout: () => void;
+    getUserFavorites: () => number[];
 }
 
-export const useAccountStore = create<AccountStore>((set) => ({
-    user: getLocalCurrentUser(),
+export const useAccountStore = create<AccountStore>((set, get) => ({
+    user: getLocalCurrentUser() ?? null,
     setAccount: (data) => set(() => {
         localStorage.setItem('currentUser', JSON.stringify(data));
         return { user: data};
@@ -20,5 +21,12 @@ export const useAccountStore = create<AccountStore>((set) => ({
             localStorage.setItem('currentUser', '');
         }
         return {user: null}
-    })
+    }),
+    getUserFavorites: () => {
+        const state : User | null = get().user;
+        if(!state || !state)
+            return [];
+        return state.favorites ?? [];
+    }
+    
 }));

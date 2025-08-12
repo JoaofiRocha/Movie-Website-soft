@@ -4,7 +4,7 @@ import styles from './styles.module.scss';
 const castCard = ({cast}: {cast:Cast}) => {
     return (
         <div className={styles.border}>
-            <img className={styles.image} src={getTMDBImageUrl(cast.profile_path, 'w200')} alt={cast.name} />
+            {cast.profile_path ? <img className={styles.image} src={getTMDBImageUrl(cast.profile_path, 'w200')} alt={cast.name} /> : null}
             <p className={styles.actor}>{cast.name}</p>
             <p className={`${styles.character}`}>{cast.character}</p>
         </div>

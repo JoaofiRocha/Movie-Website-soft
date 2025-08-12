@@ -16,6 +16,14 @@
     margin: 0;
 }
 
+.castButton{
+    width: 200px;
+    min-width: 200px;
+    border-radius: 1em;
+    background-color: theme.$secundary-color;
+    font-size: 25px;
+}
+
 .similarTitle {
     width: 100%;
     text-align: center;

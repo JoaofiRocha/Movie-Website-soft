@@ -5,6 +5,7 @@ import buttonStyles from '../../theme/_button.module.scss';
 import styles from './styles.module.scss';
 import { Link } from 'react-router-dom';
 import { mapTMDBMovie } from '../../services/mappers';
+import FavoriteButton from '../FavoriteButton';
 
 const DisplayMovie = () => {
     const [movie, setMovie] = useState<Movie>();
@@ -33,7 +34,7 @@ const DisplayMovie = () => {
         <article className={styles.displayMovie}>
             {movie ? (
                 <>
-                    <button className={`${buttonStyles.favorite} ${styles.button}`}>☆</button>
+                    <FavoriteButton className={styles.favorite} movieId={movie.id}/>
                     <Link to={`/details/movie/${movie.id}`} className={styles.link} style={{ "--background-image": `url(${getTMDBImageUrl(movie.poster_path, 'w1920_and_h800_multi_faces')})` } as React.CSSProperties}>
 
                         <h3 className={styles.captionTitle}> {movie.title}</h3>

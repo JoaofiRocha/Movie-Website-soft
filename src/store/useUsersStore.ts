@@ -7,6 +7,7 @@ interface UsersStore {
     setUsersLocal: () => void;
     addUser: (data : User) => void;
     removeUser: (data : string) => void;
+    modifyUser: (data : User) => void;
 }
 
 export const useUsersStore = create<UsersStore>((set) => ({
@@ -19,10 +20,20 @@ export const useUsersStore = create<UsersStore>((set) => ({
         return { users: updatedUsers };
     }),
     removeUser: (data) => set((state) => {
-        const updatedUsers = state.users?.filter(u => u.user === data);
+        const updatedUsers = state.users?.filter(u => u.id !== data);
         saveUsersToLocal(updatedUsers);
         return { users: updatedUsers };
-    })
+    }),
+    modifyUser: (data) => set((state) => {
+        if (!state.users || !data.id)
+            return state;
+        const index = state.users.findIndex(u => u.id === data.id);
+        const updatedUsers : User[] = [...state.users];
+        updatedUsers[index] = data;
+
+        saveUsersToLocal(updatedUsers);
+        return {users: updatedUsers }
+    }),
 }));
 
 

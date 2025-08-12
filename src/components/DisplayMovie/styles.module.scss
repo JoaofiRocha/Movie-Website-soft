@@ -14,7 +14,7 @@
 
   &:hover {
     box-shadow: -0.5em 0 2em theme.$detail-color2, 0.5em 0 2em theme.$detail-color1;
-    transform: scale(1.05);
+    transform: scale(1.01);
 
     & .favorite{
       opacity: 80;
@@ -29,6 +29,10 @@
     margin: 1em;
     font-size: 20px;
     font-weight:900;
+    background-color: rgba(theme.$secundary-color-light, 0.4);
+    border-style:solid;
+    border-color: inherit;
+    border-width: 2px;
   }
 
   .link {

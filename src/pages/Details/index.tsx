@@ -6,10 +6,12 @@ import { fetchDetails } from "../../services/tmdbAPI";
 import { getTMDBImageUrl, getStarsRating } from "../../util/tmdb";
 import Swipe from "../../components/Carrosel/Swiper";
 import CastCard from '../../components/CastCard'
+import FavoriteButton from "../../components/FavoriteButton";
 
 const Details = () => {
     const { type, id } = useParams();
     const [content, setContent] = useState<MovieDetail>();
+    const [showCast, setShowCast] = useState<boolean>(false);
 
     const getContent = async () => {
         if (!id)
@@ -28,9 +30,11 @@ const Details = () => {
         window.scrollTo(0, 0);
     }, [id]);
 
+    const showedCast = showCast ? content?.cast : content?.cast.slice(0,6);
+
     return (
         <>
-            {content && type ?
+            {content && type && id ?
                 <main className={styles.main} >
                     <div className={styles.top} style={
                         {
@@ -53,7 +57,7 @@ const Details = () => {
                         <p className={styles.overview}>{content.overview}</p>
 
                         <aside className={styles.aside}>
-                            <button className={`${buttonStyles.button} ${styles.button}`}>★</button>
+                            <FavoriteButton movieId={Number(id)} className={`${buttonStyles.button} ${styles.button}`}/>
                             <p>{`${getStarsRating(content.vote_average)} (${content.vote_average})`}</p>
                             <p>{content.status}</p>
                             <p>Original Language: {content.original_language}</p>
@@ -81,9 +85,10 @@ const Details = () => {
                         <>
                             <h2 className={styles.castTitle}>Cast</h2>
                             <div className={styles.cast}>
-                                {content.cast.map(c => {
-                                    return <CastCard cast={c} />
+                                {showedCast?.map(c => {
+                                    return <CastCard key={c.id} cast={c} />
                                 })}
+                                <button className={styles.castButton} onClick={() => setShowCast(prev => !prev)}>{showCast ? 'Show Less' : 'Show More'}</button>
                             </div>
                         </>
                         : null
