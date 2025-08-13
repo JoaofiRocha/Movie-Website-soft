@@ -24,14 +24,15 @@ export function saveUsersToLocal(users: User[] | undefined): void {
     localStorage.setItem('users', JSON.stringify(users));
 }
 
-export function doesUserExist(users: User[] | null ,userData: User): boolean {
+export function doesUserExist(users: User[] | null ,userData: User, userId? : string): boolean {
     if (!users) return false;
 
-    const list = users.filter(u => u.user === userData.user || u.email === userData.email);
+    const list = users.filter(u => (userId ? u.id !== userId : null) && (u.user === userData.user || u.email === userData.email));
     if(list.length != 0)
         return true;
     return false;
 }
+
 
 export function doesAccountMatch(users: User[] | null ,userData: User): User | null {
     if (!users) return null;

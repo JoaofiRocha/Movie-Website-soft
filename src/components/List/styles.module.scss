@@ -1,0 +1,24 @@
+@use '../../theme/variables.scss' as theme;
+
+.list{
+    width: 60%;
+    min-width: 340px;
+    background-color: theme.$secundary-color;
+    min-height: 300px;
+    border-radius: 1em;
+    padding: 1em;    
+    max-height: 520px;
+}
+
+.contents{
+    overflow-y: scroll;
+    background-color: theme.$secundary-color-light;
+    min-height: 80px;
+    max-height: 470px;
+
+    > * {
+        border-top: 1px dotted;
+        border-bottom: 1px dotted;
+    }
+    
+}

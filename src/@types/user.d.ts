@@ -4,7 +4,7 @@ declare global {
         user: string;
         email: string;
         password: string;
-        favorites: number[];
+        favorites: FavoriteMovie[];
     }
 }
 export {};

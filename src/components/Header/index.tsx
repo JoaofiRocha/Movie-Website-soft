@@ -31,7 +31,7 @@ const Header = () => {
                             </div>
                             <div className={styles.dropdownContent}>
                                 <button className={styles.dropdownButton} onClick={() => nav('/favorites')}>Favorites★ </button>
-                                <button className={styles.dropdownButton} onClick={() => nav('/settings/delete')}>Settings⚙︎ </button>
+                                <button className={styles.dropdownButton} onClick={() => nav('/settings/edit')}>Settings⚙︎ </button>
                                 <button className={styles.dropdownButton} onClick={() => logout()}>Logout⏎</button>
                             </div>
                         </div>

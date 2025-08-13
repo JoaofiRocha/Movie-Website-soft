@@ -2,11 +2,11 @@ import { create } from 'zustand';
 import { getLocalCurrentUser } from '../util/userStoreUtil';
 
 interface FavoriteStore {
-    favorites: number[];
-    setFavorites: (data: number[]) => void;
-    addFavorites: (data: number) => number[];
-    removeFavorite: (data : number) => number[];
-    getFavorites: () => number[];
+    favorites: FavoriteMovie[];
+    setFavorites: (data: FavoriteMovie[]) => void;
+    addFavorites: (data: FavoriteMovie) => FavoriteMovie[];
+    removeFavorite: (id : number, type : 'movie' | 'tv') => FavoriteMovie[];
+    getFavorites: () => FavoriteMovie[];
 }
 
 export const useFavoritesStore = create<FavoriteStore>((set, get) => ({
@@ -19,15 +19,13 @@ export const useFavoritesStore = create<FavoriteStore>((set, get) => ({
         set({ favorites: updatedFavorites });
         return updatedFavorites;
     },
-    removeFavorite: (data) => {
-        const updatedFavorites = get().favorites.filter(id => id !== data);
+    removeFavorite: (id,type) => {
+        const updatedFavorites = get().favorites.filter(favorite => favorite.id !== id || favorite.type !== type);
         set({favorites: updatedFavorites});
         return updatedFavorites;
     },
     getFavorites: () => {
-        const state: number[] = get().favorites;
-        if (!state)
-            return [];
+        const state: FavoriteMovie[] = get().favorites;
         return state ?? [];
     }
 }));

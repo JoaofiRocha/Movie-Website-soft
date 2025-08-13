@@ -19,30 +19,36 @@
   }
 }
 
-.btn{
+.btn {
   @extend %btn;
 }
 
-.btnOff{
+.btnOff {
   @extend %btn;
   color: theme.$tertiary-color;
   cursor: default;
-  pointer-events: none;
+
+  // pointer-events: none;
+  &:hover {
+    transform: none; // Remove scale effect
+    border-color: theme.$secundary-color;
+    box-shadow: none;
+  }
 }
 
-.btnTransparent{
+.btnTransparent {
   @extend %btn;
   background-color: rgba(theme.$secundary-color, 0.6);
   border-color: rgba(theme.$tertiary-color, 0.1);
   color: rgba(theme.$tertiary-color, 0.8);
 }
 
-.favorite{
+.favorite {
   border-radius: 2em;
   padding: 0.5em;
   color: theme.$tertiary-color;
 
-  &:hover{
+  &:hover {
     transform: scale(1.1);
     border: none;
     box-shadow: 0 0 1em theme.$detail-color2;

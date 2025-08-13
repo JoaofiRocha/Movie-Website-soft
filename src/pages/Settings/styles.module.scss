@@ -1,0 +1,71 @@
+@use '../../theme/variables' as theme;
+
+.aside {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    height: 50%;
+    width: 20%;
+    border-radius: 0 2em 2em 0;
+    background-color: theme.$secundary-color;
+    border-color: theme.$secundary-color-light;
+    border-style: solid;
+    left: 0;
+    margin-top: 10em;
+    transition: left 1.2s ease;
+
+    &Hide {
+        left: -18%;
+    }
+
+    .button {
+        margin: 0;
+        width: 20%;
+        align-self: flex-end;
+        color: theme.$tertiary-color;
+        background-color: transparent;
+        font-size: 20px;
+        font-weight: bold;
+        border: none;
+    }
+
+    @media (max-width:400px) {
+        right: 0;
+        left: auto;
+        width: 40%;
+        margin-top: 9em;
+        transition: all 1.2s ease;
+        border-radius: 2em 0 0 2em;
+        border-color: theme.$tertiary-color;
+        border-right: 0;
+        border-width: 0.1em;
+
+        .button {
+            align-self: flex-start;
+            padding-left: 0;
+        }
+
+        &Hide {
+            right: -36%;
+            height: 6%;
+            border-radius: 1em;
+
+            .title,
+            .link {
+                visibility: hidden;
+            }
+        }
+    }
+
+}
+
+
+
+.title {
+    font-size: clamp(1em, 3vw, 3em);
+}
+
+.link{
+    margin: 1em;
+}

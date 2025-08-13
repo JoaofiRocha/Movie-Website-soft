@@ -6,7 +6,7 @@ interface AccountStore {
     setAccount: (data: User | null) => void;
     setAccountLocal: () => void;
     logout: () => void;
-    getUserFavorites: () => number[];
+    getUserFavorites: () => FavoriteMovie[];
 }
 
 export const useAccountStore = create<AccountStore>((set, get) => ({
@@ -24,7 +24,7 @@ export const useAccountStore = create<AccountStore>((set, get) => ({
     }),
     getUserFavorites: () => {
         const state : User | null = get().user;
-        if(!state || !state)
+        if(!state)
             return [];
         return state.favorites ?? [];
     }

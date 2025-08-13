@@ -22,7 +22,7 @@ const DisplayMovie = () => {
                 const mappedMovie = mapTMDBMovie(popularMovies[movieIndex]);
 
                 if (backdrop)
-                    setMovie({ ...mappedMovie, poster_path: backdrop });
+                    setMovie({ ...mappedMovie, backdrop_path: backdrop });
                 else
                     setMovie(mappedMovie);
             }
@@ -34,12 +34,12 @@ const DisplayMovie = () => {
         <article className={styles.displayMovie}>
             {movie ? (
                 <>
-                    <FavoriteButton className={styles.favorite} movieId={movie.id}/>
-                    <Link to={`/details/movie/${movie.id}`} className={styles.link} style={{ "--background-image": `url(${getTMDBImageUrl(movie.poster_path, 'w1920_and_h800_multi_faces')})` } as React.CSSProperties}>
+                    <FavoriteButton className={styles.favorite} movie={movie} type={'movie'}/>
+                    <Link to={`/details/movie/${movie.id}`} className={styles.link} style={{ "--background-image": `url(${getTMDBImageUrl(movie.backdrop_path ?? movie.poster_path , 'w1920_and_h800_multi_faces')})` } as React.CSSProperties}>
 
                         <h3 className={styles.captionTitle}> {movie.title}</h3>
                         <section >
-                            <div>{findGenres(movie.genres).map(g => <button className={`${styles.captionButton} ${buttonStyles.btnTransparent} ${buttonStyles.btnOff}`} disabled>{g}</button>)}</div>
+                            <div className={styles.captionButtonDiv} >{findGenres(movie.genres).map(g => <span className={`${styles.captionButton} ${buttonStyles.btnTransparent} ${buttonStyles.btnOff}`} >{g}</span>)}</div>
                             <div className={styles.captionInformation}>
                                 <p>{movie.release_year}</p>
                                 <p>
