@@ -68,3 +68,15 @@
     border-color: theme.$tertiary-color;
   }
 }
+
+.buttonDanger{
+  @extend .button;
+  color: theme.$error-color;
+  border-color: theme.$error-color;
+  font-weight: 900;
+
+  &:hover{
+    box-shadow: 0 0 1em theme.$error-color;
+    border-color: theme.$error-color;;
+  }
+}

@@ -15,29 +15,29 @@
     box-shadow: -0.5em 0 2em theme.$detail-color2, 0.5em 0 2em theme.$detail-color1;
     transform: scale(1.01);
 
-    & .favorite{
+    & .favorite {
       opacity: 80;
     }
   }
 
-  
 
-  .favorite{
+
+  .favorite {
     align-self: flex-end;
     position: absolute;
     opacity: 0;
     transition: all 0.3s ease;
     margin: 1em;
     font-size: 20px;
-    font-weight:900;
+    font-weight: 900;
     background-color: rgba(theme.$secundary-color-light, 0.4);
-    border-style:solid;
+    border-style: solid;
     border-color: inherit;
     border-width: 2px;
   }
 
-  @media (max-width: 500px){
-    .favorite{
+  @media (max-width: 500px) {
+    .favorite {
       opacity: 80;
       font-size: 20px;
     }
@@ -50,13 +50,12 @@
     height: 100%;
     min-height: clamp(20em, 40vw, 50em);
     color: inherit;
-    
-    background-image: 
+
+    background-image:
       linear-gradient(to top,
         rgba(theme.$secundary-color-light, 0.9) 0%,
         rgba(theme.$secundary-color-light, 0.5) 45%,
-        transparent 100%
-      ),
+        transparent 100%),
       var(--background-image);
     background-size: cover;
     background-position: center;
@@ -69,17 +68,24 @@
       padding: 0;
     }
 
+    .captionSection {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1em;
+    }
+
     .captionTitle {
       margin-bottom: 0em;
       font-size: clamp(1.2em, 3vw, 3em);
     }
 
-    .captionButton{
+    .captionButton {
       font-size: clamp(0.6em, 1.5vw, 1em);
       padding: 0.5em 1em;
+      pointer-events: none;
     }
 
-    .captionButtonDiv{
+    .captionButtonDiv {
       height: 40px;
     }
 
@@ -89,7 +95,7 @@
       justify-content: space-between;
       width: 100%;
 
-      p{
+      p {
         margin-inline: 1em
       }
     }
@@ -97,6 +103,12 @@
 
 
   @media (max-width: 1200px) {
+    .link {
+      .captionSection {
+        gap: 0.1em;
+      }
+
+
       .captionInformation {
         font-size: clamp(0.5em, 20vw, 1.5em);
       }
@@ -105,6 +117,6 @@
         visibility: hidden;
         display: none;
       }
+    }
   }
 }
-

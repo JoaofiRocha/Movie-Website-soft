@@ -4,6 +4,7 @@ import { useAccountStore } from '../../../store/useAccountStore';
 import { useUsersStore } from '../../../store/useUsersStore';
 import { useNavigate } from 'react-router-dom';
 import Modal from '../../../components/Modal';
+import buttonStyles from '../../../theme/_button.module.scss';
 
 const DeleteAccount = () => {
     const [modalState, setModalState] = useState<boolean>(false);
@@ -39,8 +40,8 @@ const DeleteAccount = () => {
                     <h2>Delete Account?</h2>
                     <p>Are you sure?</p>
                     <div className={styles.buttonArea}>
-                        <button onClick={() => setModalState(false)}>No</button>
-                        <button onClick={handleClick}>Delete</button>
+                        <button className={buttonStyles.button} onClick={() => setModalState(false)}>No</button>
+                        <button className={buttonStyles.buttonDanger} onClick={handleClick}>Delete</button>
                     </div>
                 </Modal>
         </main>

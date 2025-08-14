@@ -6,7 +6,7 @@
     background-color: theme.$secundary-color;
     display: flex;
     flex-direction: column;
-    min-height: 520px;
+    min-height: 650px;
     border-radius: 1em;
     padding: 1em;
     max-height: 520px;
@@ -18,7 +18,7 @@
     border-bottom: 0.1em theme.$tertiary-color solid;
     padding: 0;
 
-    height: 470px;
+    height: 570px;
 
 
     >* {

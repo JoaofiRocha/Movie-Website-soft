@@ -45,7 +45,7 @@ const Details = () => {
                         <h1 className={styles.title}>{content.title}</h1>
                         <div className={styles.data}>
                             <p>{content.release_date?.split('-')[0] ?? `${content.first_air_date?.split('-')[0]} - ${content.last_air_date?.split('-')[0]}`}</p>
-                            <p>{content.runtime ? `${content.runtime} min` : `S ${content.number_of_seasons}`}</p>
+                            <p>{content.runtime ? `${content.runtime} min` : (content.number_of_seasons ? `S ${content.number_of_seasons}`: '')}</p>
                             <div className={styles.buttonsDiv}>
                                 {content.genres.map(genre => { return <button className={buttonStyles.btnOff}  onClick={() => nav(`/search/${genre.name}`)}>{genre.name}</button> })}
                             </div>
@@ -53,11 +53,11 @@ const Details = () => {
                     </div>
 
 
-                    <div className={styles.info}>
+                    <div className={`${styles.info} ${content.overview ? '': styles.infoNoOverview}`}>
 
                         <p className={styles.overview}>{content.overview}</p>
 
-                        <aside className={styles.aside}>
+                        <aside className={`${styles.aside} ${content.overview ? '': styles.asideNoOverview}`}>
                             <FavoriteButton type={type as 'movie' | 'tv'} movie={content} className={`${buttonStyles.button} ${styles.button}`}/>
                             <p>{`${getStarsRating(content.vote_average)} (${content.vote_average})`}</p>
                             <p>{content.status}</p>

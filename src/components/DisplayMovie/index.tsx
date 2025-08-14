@@ -38,8 +38,8 @@ const DisplayMovie = () => {
                     <Link to={`/details/movie/${movie.id}`} className={styles.link} style={{ "--background-image": `url(${getTMDBImageUrl(movie.backdrop_path ?? movie.poster_path , 'w1920_and_h800_multi_faces')})` } as React.CSSProperties}>
 
                         <h3 className={styles.captionTitle}> {movie.title}</h3>
-                        <section >
-                            <div className={styles.captionButtonDiv} >{findGenres(movie.genres).map(g => <span className={`${styles.captionButton} ${buttonStyles.btnTransparent} ${buttonStyles.btnOff}`} >{g}</span>)}</div>
+                        <section className={styles.captionSection}>
+                            <div className={styles.captionButtonDiv} >{findGenres(movie.genres).map(g => <button className={`${styles.captionButton} ${buttonStyles.btnTransparent} ${buttonStyles.btnOff}`} >{g}</button>)}</div>
                             <div className={styles.captionInformation}>
                                 <p>{movie.release_year}</p>
                                 <p>
