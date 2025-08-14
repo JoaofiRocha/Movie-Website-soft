@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styles from './styles.module.scss';
 import { useAccountStore } from '../../../store/useAccountStore';
 import { useUsersStore } from '../../../store/useUsersStore';
@@ -11,10 +11,6 @@ const DeleteAccount = () => {
     const { removeUser } = useUsersStore();
     const nav = useNavigate();
 
-    useEffect(() => {
-        if (!user)
-            nav('/login');
-    })
 
     const handleClick = () => {
         if (!user)

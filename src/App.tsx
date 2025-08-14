@@ -10,6 +10,7 @@ import DeleteAccount from './pages/Settings/DeleteAccount';
 import EditAccount from './pages/Settings/EditAccount';
 import Settings from './pages/Settings';
 import Favorites from './pages/Favorites';
+import PrivateRoutes from './components/PrivateRoutes/index';
 
 function App() {
   return (
@@ -19,11 +20,14 @@ function App() {
         <Route path="details/:type/:id" element={<Details />} />
         <Route path="signup" element={<CreateAccount />} />
         <Route path="login" element={<Login />} />
-        <Route path="favorites" element={<Favorites />} />
 
-        <Route path="settings/" element={<Settings />}>
-          <Route path="delete" element={<DeleteAccount />} />
-          <Route path="edit" element={<EditAccount />} />
+        <Route element={<PrivateRoutes />}>
+          <Route path="favorites" element={<Favorites />} />
+
+          <Route path="settings/" element={<Settings />}>
+            <Route path="delete" element={<DeleteAccount />} />
+            <Route path="edit" element={<EditAccount />} />
+          </Route>
         </Route>
 
         <Route path="*" element={<ErrorPage />} />

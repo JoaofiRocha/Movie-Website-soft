@@ -4,22 +4,15 @@ import styles from './styles.module.scss';
 import buttonStyles from '../../theme/_button.module.scss';
 import { useUsersStore } from '../../store/useUsersStore';
 import { doesUserExist } from '../../util/userStoreUtil';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const CreateAccount = () => {
     const { register, handleSubmit, formState: { errors } } = useForm<User>();
-    const { setAccount, user } = useAccountStore();
+    const { setAccount } = useAccountStore();
     const { addUser, users } = useUsersStore();
     const [error, setError] = useState(false);
     const nav = useNavigate();
-
-
-     useEffect(() => {
-            if(user){
-                nav('/');
-            }
-        },[])
 
     const onSubmit = (data: User) => {
         if (data && !doesUserExist(users, data)) {

@@ -4,21 +4,16 @@ import styles from './styles.module.scss';
 import buttonStyles from '../../theme/_button.module.scss';
 import { useUsersStore } from '../../store/useUsersStore';
 import { doesAccountMatch } from '../../util/userStoreUtil';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm<User>();
-    const { setAccount, user } = useAccountStore();
+    const { setAccount } = useAccountStore();
     const { users } = useUsersStore();
     const [error, setError] = useState(false);
     const nav = useNavigate();
     
-     useEffect(() => {
-        if(user){
-            nav('/');
-        }
-    },[])
 
     const onSubmit = (data: User) => {
         const user = doesAccountMatch(users, data);

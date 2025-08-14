@@ -19,13 +19,13 @@ const Footer = () => {
                     <ul className={styles.ul}>
                         {user ?
                             <>
-                                <li><a href="/signup">Signup</a></li>
-                                <li><a href="/login">Login</a></li>
+                                <li><a href="/deleteAccount">Delete Account</a></li>
+                                <li><a href="/settings">Edit Account Data</a></li>
                             </>
                             :
                             <>
-                                <li><a href="/deleteAccount">Delete Account</a></li>
-                                <li><a href="/settings">Edit Account Data</a></li>
+                                <li><a href="/signup">Signup</a></li>
+                                <li><a href="/login">Login</a></li>
                             </>
                         }
                     </ul>

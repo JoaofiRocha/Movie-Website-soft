@@ -1,24 +1,115 @@
 @use '../../theme/variables.scss' as theme;
 
-.list{
+.list {
     width: 60%;
     min-width: 340px;
     background-color: theme.$secundary-color;
-    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    min-height: 520px;
     border-radius: 1em;
-    padding: 1em;    
+    padding: 1em;
     max-height: 520px;
 }
 
-.contents{
+.contents {
     overflow-y: scroll;
     background-color: theme.$secundary-color-light;
-    min-height: 80px;
-    max-height: 470px;
+    border-bottom: 0.1em theme.$tertiary-color solid;
+    padding: 0;
 
-    > * {
+    height: 470px;
+
+
+    >* {
         border-top: 1px dotted;
         border-bottom: 1px dotted;
     }
-    
+
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 1em;
+
+    &Button {
+        color: theme.$tertiary-color;
+        border-radius: 4em;
+        background-color: theme.$secundary-color-light;
+        border: 0.1em theme.$tertiary-color solid;
+        margin-inline: 0.3em;
+        transition: all 0.3s ease;
+
+        &:hover {
+            border-color: inherit;
+            transform: scale(1.1);
+        }
+    }
+
+    .selectedPage {
+        color: rgba(theme.$tertiary-color, 0.4);
+        pointer-events: none;
+        border: 0.1em rgba(theme.$tertiary-color, 0.2) solid;
+        scale: 0.9;
+    }
+}
+
+.link {
+    display: flex;
+    width: 90%;
+    height: 100%;
+    box-sizing: border-box;
+    color: theme.$tertiary-color;
+}
+
+.listItem {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 90px;
+    padding-inline-end: 1vw;
+    box-sizing: border-box;
+
+    .noImage {
+        padding-inline: 1.58em;
+    }
+
+
+}
+
+.info {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+
+
+    .title {
+        padding-left: 1em;
+        max-width: 35rem;
+        width: 70%;
+        font-size: clamp(0.9em, 1.5vw, 1.5em);
+    }
+
+    .p {
+        text-align: center;
+        margin: 3px;
+    }
+}
+
+.bar {
+    border-radius: 80px;
+    padding-inline: 15px;
+    border-color: theme.$tertiary-color;
+    border-style: solid;
+    color: theme.$tertiary-color;
+    background-color: rgba(theme.$primary-color, 0.7);
+    font-size: clamp(1.5em, 1.5vw, 1.5em);
+
+    &:focus{
+        border-color: inherit;
+        outline: none;
+        transform: scale(1.05,1.2);
+    }
 }
