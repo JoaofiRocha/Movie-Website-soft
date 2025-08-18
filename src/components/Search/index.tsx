@@ -5,7 +5,6 @@ import { fetchMulti } from '../../services/tmdbAPI';
 import { mapTMDBMovies } from '../../services/mappers';
 import { debounce } from 'lodash';
 import { useNavigate } from 'react-router-dom';
-import { useSearchStore } from '../../store/useSearchStore';
 
 interface Props {
     initialValue?: string;
