@@ -12,11 +12,12 @@ interface Props {
     onChangePage?: (page: number) => void;
     hasFilter?: boolean;
     numberOfPages?: number;
+    query?:string;
 }
 
 
 
-const List = ({ className, pageMax = 5, listMovie, onChangePage, hasFilter = true, numberOfPages }: Props) => {
+const List = ({ className, pageMax = 5, listMovie, onChangePage, hasFilter = true, numberOfPages, query }: Props) => {
     const [selectedPage, setSelectedPage] = useState<number>(0);
     const [movies, setMovies] = useState<(FavoriteMovie | Content)[]>(listMovie)
     const [filter, setFilter] = useState<string>('');
@@ -56,6 +57,10 @@ const List = ({ className, pageMax = 5, listMovie, onChangePage, hasFilter = tru
         else
             setMovies(list);
     }, [listMovie]);
+
+    useEffect(() => {
+        setSelectedPage(0);
+    },[query])
 
 
     const changePage = (index: number = selectedPage, list: (FavoriteMovie | Content)[] = filteredList) => {
