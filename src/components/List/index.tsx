@@ -8,50 +8,77 @@ interface Props {
     items?: number[];
     className?: string;
     pageMax?: number;
-    listMovie: FavoriteMovie[];
+    listMovie: FavoriteMovie[] | Content[];
     onChangePage?: (page: number) => void;
+    hasFilter?: boolean;
+    numberOfPages?: number;
 }
 
 
 
-const List = ({ className, pageMax = 5, listMovie, onChangePage }: Props) => {
+const List = ({ className, pageMax = 5, listMovie, onChangePage, hasFilter = true, numberOfPages }: Props) => {
     const [selectedPage, setSelectedPage] = useState<number>(0);
-    const [movies, setMovies] = useState<FavoriteMovie[]>(listMovie)
+    const [movies, setMovies] = useState<(FavoriteMovie | Content)[]>(listMovie)
     const [filter, setFilter] = useState<string>('');
-    const [filteredList, setFilteredList] = useState<FavoriteMovie[]>(listMovie)
+    const [filteredList, setFilteredList] = useState<(FavoriteMovie | Content)[]>(listMovie)
 
-    const pages = Math.ceil(filteredList.length / pageMax);
+    const pages = numberOfPages ?? Math.ceil(filteredList.length / pageMax);
 
 
     useEffect(() => {
         let list;
         if (filter.trim() === '') {
             list = listMovie;
+        } else {
+            list = listMovie.filter(m =>
+                m.title.toLowerCase().includes(filter.toLowerCase())
+            );
         }
-        else {
-            list = listMovie.filter(m => {
-                return m.title.toLowerCase().includes(filter.toLowerCase());
-            });
-            
-        }
-
         setFilteredList(list);
-        changePage(0, list);
-    }, [filter, listMovie])
+        setSelectedPage(0);
+        setMovies(list.slice(0, pageMax));
+    }, [filter]);
+
+    useEffect(() => {
+        let list;
+        if (!hasFilter || filter.trim() === '') {
+            list = listMovie;
+        } else {
+            list = listMovie.filter(m =>
+                m.title.toLowerCase().includes(filter.toLowerCase())
+            );
+        }
+        setFilteredList(list);
+        if (hasFilter) {
+            const startIndex = selectedPage * pageMax;
+            setMovies(list.slice(startIndex, startIndex + pageMax));
+        }
+        else
+            setMovies(list);
+    }, [listMovie]);
 
 
-    const changePage = (index: number = selectedPage, list: FavoriteMovie[] = filteredList) => {
+    const changePage = (index: number = selectedPage, list: (FavoriteMovie | Content)[] = filteredList) => {
+        if (onChangePage) {
+            console.log(index + 1);
+            onChangePage(index + 1);
+            setMovies(list);
+            setSelectedPage(index);
+            return;
+        }
+
         setSelectedPage(index);
         const startIndex = index * pageMax;
         const endIndex = startIndex + pageMax;
-
         setMovies(list.slice(startIndex, endIndex));
     }
 
 
     return (
         <div className={`${className ?? ''} ${styles.list}`}>
-            <input className={styles.bar} placeholder='Search...' type="text" onChange={e => setFilter(e.target.value)} />
+            {hasFilter ?
+                <input className={styles.bar} placeholder='Search...' type="text" onChange={e => setFilter(e.target.value)} />
+                : null}
 
             <ul className={styles.contents}>
                 {movies.map(movie => {
@@ -67,7 +94,7 @@ const List = ({ className, pageMax = 5, listMovie, onChangePage }: Props) => {
                                 </div>
                             </Link>
 
-                            <FavoriteButton type={movie.type} movie={movie} />
+                            <FavoriteButton type={movie.type as 'movie' | 'tv'} movie={movie} />
                         </li>);
                 })}
             </ul>
@@ -77,9 +104,14 @@ const List = ({ className, pageMax = 5, listMovie, onChangePage }: Props) => {
                     {[...Array(pages)].map((_, i) =>
                         <button className={`${i === selectedPage ? styles.selectedPage : ''} ${styles.paginationButton}`} key={i + 1} onClick={() => {
                             changePage(i);
-                            onChangePage ? (i) : null;
                         }}>{i + 1}</button>
-                    )}
+                    ).filter((_, i) =>
+                        i === 0 ||
+                        i === selectedPage ||
+                        i === selectedPage + 1 ||
+                        i === selectedPage - 1 ||
+                        ((i + 1 <= selectedPage + 5) && (i + 1 >= selectedPage - 5) && (i + 1) % 5 === 0) ||
+                        i === pages - 1)}
                 </div>
                 : null}
         </div>

@@ -1,49 +1,61 @@
 interface DataI {
     id: number;
     title: string;
+    name: string;
     poster_path: string;
     vote_average: number;
-    release_date: string;
+    release_date?: string;
+    first_air_date?: string;
     genre_ids: number[];
     popularity: number;
     overview: string;
+    media_type: string;
 }
 
-export function mapTMDBMovie(data: DataI): Movie {
-    return {
-        id: data.id,
-        title: data.title,
-        poster_path: data.poster_path,
-        rating: data.vote_average,
-        release_year: data.release_date ? data.release_date.split('-')[0] : '',
-        genres: data.genre_ids,
-        popularity: data.popularity,
-        overview: data.overview
-    };
+export function mapTMDBMovie(data: DataI): Content {
+    if (data.media_type === 'movie') {
+        return {
+            ...data,
+            rating: data.vote_average,
+            release_year: data.release_date ? data.release_date.split('-')[0] : '',
+            genres: data.genre_ids,
+            type: data.media_type,
+        };
+    }
+    else{
+        return {
+            ...data,
+            title: data.name,
+            rating: data.vote_average,
+            release_year: data.first_air_date ? data.first_air_date.split('-')[0] : '',
+            genres: data.genre_ids,
+            type: data.media_type,
+        };
+    }
 }
 
 
 
-export function mapTMDBMovies(data: DataI[], limit?: number): Movie[] {
-if (!Array.isArray(data)) return [];
+export function mapTMDBMovies(data: DataI[], limit?: number): (Content)[] {
+    if (!Array.isArray(data)) return [];
 
-    let movies : Movie[] = data.map((e: DataI) => mapTMDBMovie(e));
+    let movies: (Content)[] = data.map((e: DataI) => mapTMDBMovie(e));
     movies = movies.sort((a, b) => b.popularity - a.popularity);
 
-    if(limit){
-        return movies.slice(0,limit);
+    if (limit) {
+        return movies.slice(0, limit);
     }
     return movies;
 }
 
 
-export function mapDetails(movie: any) : MovieDetail {
-    const content : MovieDetail = {
+export function mapDetails(movie: any): MovieDetail {
+    const content: MovieDetail = {
         ...movie,
         title: movie.title || movie.name,
         similar: mapTMDBMovies(movie.similar.results),
         cast: mapCast(movie.credits.cast),
-        };
+    };
     return content;
 }
 

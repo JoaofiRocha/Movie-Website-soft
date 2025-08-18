@@ -1,7 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { useAccountStore } from '../../../store/useAccountStore';
 import styles from './styles.module.scss';
-import buttonStyles from '../../../theme/_button.module.scss';
 import { useUsersStore } from '../../../store/useUsersStore';
 import { doesUserExist } from '../../../util/userStoreUtil'; 
 import { useState } from 'react';
@@ -102,12 +101,6 @@ const EditAccount = () => {
                 <input className={styles.submit} type="submit" value={'Save'}/>
                 {/* <button className={styles.submitCancel} onClick={resetValue}>Cancel</button> */}
             </div>
-
-            <div className={styles.div}>
-                <button className={buttonStyles.button} onClick={() => nav('/login')}>Already Have an Account?</button>
-
-            </div>
-
         </form>
     )
 }

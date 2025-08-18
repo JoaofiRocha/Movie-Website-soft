@@ -4,7 +4,7 @@ import styles from './styles.module.scss';
 import MovieCard from '../../MovieCard/index';
  
 interface prop {
-  movies: Movie[];
+  movies: Content[];
   nearEnd?: () => void;
   maxMovies?: number;
   ref?: React.RefObject<any>;

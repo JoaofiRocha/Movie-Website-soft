@@ -8,7 +8,7 @@ import { mapTMDBMovie } from '../../services/mappers';
 import FavoriteButton from '../FavoriteButton';
 
 const DisplayMovie = () => {
-    const [movie, setMovie] = useState<Movie>();
+    const [movie, setMovie] = useState<Content>();
 
     useEffect(() => {
         const getMovies = async () => {
@@ -30,6 +30,22 @@ const DisplayMovie = () => {
 
         getMovies();
     }, []);
+
+    useEffect(() => {
+    if (movie && (movie.backdrop_path || movie.poster_path)) {
+        const url = getTMDBImageUrl(movie.backdrop_path ?? movie.poster_path, 'w1920_and_h800_multi_faces');
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = 'image';
+        link.href = url;
+        document.head.appendChild(link);
+
+        return () => {
+            document.head.removeChild(link);
+        };
+    }
+}, [movie]);
+
     return (
         <article className={styles.displayMovie}>
             {movie ? (

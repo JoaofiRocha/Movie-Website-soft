@@ -1,8 +1,4 @@
-declare global {
-    interface Genre {
-        id: number,
-        name: string
-    }
+interface Genre {
+    id: number,
+    name: string
 }
-
-export {};

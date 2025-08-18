@@ -11,6 +11,7 @@ import EditAccount from './pages/Settings/EditAccount';
 import Settings from './pages/Settings';
 import Favorites from './pages/Favorites';
 import PrivateRoutes from './components/PrivateRoutes/index';
+import SearchPage from './pages/SearchPage';
 
 function App() {
   return (
@@ -18,6 +19,10 @@ function App() {
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="details/:type/:id" element={<Details />} />
+      </Route>
+
+      <Route path="/" element={<Layout bar={false} />}>
+        <Route path='search' element={<SearchPage />} />
         <Route path="signup" element={<CreateAccount />} />
         <Route path="login" element={<Login />} />
 
@@ -29,9 +34,9 @@ function App() {
             <Route path="edit" element={<EditAccount />} />
           </Route>
         </Route>
-
-        <Route path="*" element={<ErrorPage />} />
       </Route>
+
+      <Route path="*" element={<ErrorPage />} />
     </Routes>
   );
 }

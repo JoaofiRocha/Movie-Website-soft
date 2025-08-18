@@ -11,7 +11,7 @@ interface props {
 }
 
 const Carrosel = ({ type = 'movie' }: props) => {
-    const [movies, setMovies] = useState<Movie[]>([])
+    const [movies, setMovies] = useState<Content[]>([])
     const [currentPage, setCurrentPage] = useState<number>(0);
 
     const [genres, setGenres] = useState<string[]>([]);

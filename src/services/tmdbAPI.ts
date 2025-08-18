@@ -21,6 +21,19 @@ export const fetchMovie = async (name: string) => {
     }
 }
 
+export const fetchMulti = async (name: string, page: number = 1) => {
+    try {
+        const response = await axiosDefault('GET', 'search/multi', { query: name, include_adult: 'false', language: 'en-US', page: `${page}` })
+        return {
+            results: response.results.filter((e: any) => e.media_type !== 'person'),
+            total_pages: response.total_pages
+        };
+    }
+    catch (error) {
+        console.error("Error fetching popular movies:", error);
+    }
+}
+
 
 export const fetchMovieImages = async (id: number) => {
     try {

@@ -3,10 +3,10 @@ import Header from '../Header';
 import Footer from '../Footer';
 import styles from './styles.module.scss';
 
-function Layout() {
+function Layout({bar = true}) {
     return (
         <div className={styles.grid}>
-            <Header />
+            <Header bar={bar}/>
             <Outlet />
             <Footer />
         </div>

@@ -4,8 +4,12 @@ import buttonStyles from '../../theme/_button.module.scss';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAccountStore } from '../../store/useAccountStore';
 
-const Header = () => {
-    const { user,logout } = useAccountStore()
+interface prop{
+    bar?: boolean;
+}
+
+const Header = ({bar = true} : prop) => {
+    const { user, logout } = useAccountStore()
     const nav = useNavigate();
 
     return (
@@ -24,7 +28,7 @@ const Header = () => {
                     <>
                         <div className={`${styles.dropdown}`}>
                             <div className={styles.account}>
-                                <h3> Hello {user.user.split(' ')[0].substring(0,10)}</h3>
+                                <h3> Hello {user.user.split(' ')[0].substring(0, 10)}</h3>
                                 <svg className={`${styles.iconSvg} `} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
                                     <path d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                                 </svg>
@@ -45,9 +49,12 @@ const Header = () => {
 
             </div>
 
-            <div className={`${styles.search} ${styles.item}`}>
-                <Search hasFocus={true} isLarge={true} type="search" placeholder='Search for a movie...' />
-            </div>
+            {bar ?
+                <div className={`${styles.search} ${styles.item}`}>
+                    <Search contentLimit={5} hasFocus={true} isLarge={true} type="search" placeholder='Search for a movie...' />
+                </div>
+                : null
+            }
 
 
         </header >
