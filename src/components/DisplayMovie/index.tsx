@@ -1,69 +1,40 @@
-import { fetchPopularMovies, fetchBackDrop } from '../../services/tmdbAPI';
-import { useState, useEffect } from 'react';
 import { getTMDBImageUrl, getStarsRating, findGenres } from '../../util/tmdb';
 import buttonStyles from '../../theme/_button.module.scss';
 import styles from './styles.module.scss';
 import { Link } from 'react-router-dom';
-import { mapTMDBMovie } from '../../services/mappers';
 import FavoriteButton from '../FavoriteButton';
 
-const DisplayMovie = () => {
-    const [movie, setMovie] = useState<Content>();
+interface Prop {
+    movie: Content | undefined
+}
 
-    useEffect(() => {
-        const getMovies = async () => {
-            const popularMovies = await fetchPopularMovies();
-            const movieIndex = Math.floor(Math.random() * (11));
-            // const movieIndex = 1;
-
-
-            if (popularMovies && popularMovies.length > 0) {
-                const backdrop = await fetchBackDrop(popularMovies[movieIndex].id);
-                const mappedMovie = mapTMDBMovie(popularMovies[movieIndex]);
-
-                if (backdrop)
-                    setMovie({ ...mappedMovie, backdrop_path: backdrop });
-                else
-                    setMovie(mappedMovie);
-            }
-        };
-
-        getMovies();
-    }, []);
-
-    useEffect(() => {
-    if (movie && (movie.backdrop_path || movie.poster_path)) {
-        const url = getTMDBImageUrl(movie.backdrop_path ?? movie.poster_path, 'w1920_and_h800_multi_faces');
-        const link = document.createElement('link');
-        link.rel = 'preload';
-        link.as = 'image';
-        link.href = url;
-        document.head.appendChild(link);
-
-        return () => {
-            document.head.removeChild(link);
-        };
-    }
-}, [movie]);
+const DisplayMovie = ({ movie }: Prop) => {
+    const isMobile = window.innerWidth < 800;
+    // 'w1920_and_h700_multi_faces'
+    const imageSize = isMobile ? 'w780' : 'w1280_and_h720_multi_faces';
+    const imageUrl = getTMDBImageUrl(movie ? (movie.backdrop_path ?? movie.poster_path ?? '') : '', imageSize);
 
     return (
         <article className={styles.displayMovie}>
             {movie ? (
                 <>
-                    <FavoriteButton className={styles.favorite} movie={movie} type={'movie'}/>
-                    <Link to={`/details/movie/${movie.id}`} className={styles.link} style={{ "--background-image": `url(${getTMDBImageUrl(movie.backdrop_path ?? movie.poster_path , 'w1920_and_h800_multi_faces')})` } as React.CSSProperties}>
+                    <link rel="preload" fetchPriority="high" as="image" href={imageUrl} />
 
-                        <h3 className={styles.captionTitle}> {movie.title}</h3>
-                        <section className={styles.captionSection}>
-                            <div className={styles.captionButtonDiv} >{findGenres(movie.genres).map(g => <button className={`${styles.captionButton} ${buttonStyles.btnTransparent} ${buttonStyles.btnOff}`} >{g}</button>)}</div>
-                            <div className={styles.captionInformation}>
-                                <p>{movie.release_year}</p>
-                                <p>
-                                    {getStarsRating(movie.rating)}
-                                    ({movie.rating})
-                                </p>
-                            </div>
-                        </section>
+                    <FavoriteButton className={styles.favorite} movie={movie} type={'movie'} />
+                    <Link to={`/details/movie/${movie.id}`} className={styles.link} style={{ "--background-image": `url(${imageUrl})` } as React.CSSProperties}>
+                        <div className={styles.caption}>
+                            <h3 className={styles.captionTitle}> {movie.title}</h3>
+                            <section className={styles.captionSection}>
+                                <div className={styles.captionButtonDiv} >{findGenres(movie.genres).map(g => <button className={`${styles.captionButton} ${buttonStyles.btnTransparent} ${buttonStyles.btnOff}`} >{g}</button>)}</div>
+                                <div className={styles.captionInformation}>
+                                    <p>{movie.release_year}</p>
+                                    <p>
+                                        {getStarsRating(movie.rating)}
+                                        ({movie.rating})
+                                    </p>
+                                </div>
+                            </section>
+                        </div>
 
                         <p className={styles.captionOverview}>{movie.overview}</p>
 

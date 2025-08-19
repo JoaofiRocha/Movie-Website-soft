@@ -10,6 +10,7 @@
   resize: none;
   width: clamp(50px, 30vw, 230px);
   height: 45px;
+  min-height: 45px;
   font-size: clamp(20px, 2.5vw, 25px);
   white-space: nowrap;
   }

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './styles.module.scss';
 import SearchDropdown from './SearchDropdown';
 import { fetchMulti } from '../../services/tmdbAPI';
@@ -20,18 +20,15 @@ interface Props {
 
 const Search = ({ className, initialValue, placeholder = "", hasFocus, isLarge, type = "bar", contentLimit }: Props) => {
     const [query, setQuery] = useState<string>(initialValue ?? '');
-    
 
     const [movies, setMovies] = useState<Content[]>([]);
-    const inputRef = useRef<HTMLInputElement>(null);
     const [showDropdown, setShowDropdown] = useState(false);
     const navigate = useNavigate();
-
 
     useEffect(() => {
         const onDebounceSearch = debounce(async (query: string) => {
             const data = await fetchMulti(query);
-            const res = mapTMDBMovies(data?.results, contentLimit);
+            const res = mapTMDBMovies(data?.results, undefined, contentLimit);
             setMovies(res);
         }, 500);
 
@@ -57,12 +54,15 @@ const Search = ({ className, initialValue, placeholder = "", hasFocus, isLarge, 
     ].join(' ');
 
     return (
-        <form className={styles.form} onSubmit={(e) => {
-            e.preventDefault();
-            if (query.trim() !== "") {
-                navigate(`/search?query=${query.trim()}`);
-            }
-        }}>
+        <form className={styles.form}
+            onBlur={() => setTimeout(() => { setShowDropdown(false) }, 100)}
+            onFocus={() => setShowDropdown(true)}
+            onSubmit={(e) => {
+                e.preventDefault();
+                if (query.trim() !== "") {
+                    navigate(`/search?query=${query.trim()}`);
+                }
+            }}>
 
             <input
                 className={`${searchClasses} ${className}`}
@@ -78,10 +78,6 @@ const Search = ({ className, initialValue, placeholder = "", hasFocus, isLarge, 
                     setQuery(e.target.value);
 
                 }}
-                onBlur={() => setTimeout(() => { setShowDropdown(false) }, 100)}
-                onFocus={() => setShowDropdown(true)}
-                ref={inputRef}
-
             />
 
 

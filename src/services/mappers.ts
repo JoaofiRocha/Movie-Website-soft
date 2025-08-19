@@ -12,8 +12,8 @@ interface DataI {
     media_type: string;
 }
 
-export function mapTMDBMovie(data: DataI): Content {
-    if (data.media_type === 'movie') {
+export function mapTMDBMovie(data: DataI, type? : 'movie' | 'tv'): Content {
+    if (data.media_type === 'movie' || type === 'movie') {
         return {
             ...data,
             rating: data.vote_average,
@@ -36,10 +36,10 @@ export function mapTMDBMovie(data: DataI): Content {
 
 
 
-export function mapTMDBMovies(data: DataI[], limit?: number): (Content)[] {
+export function mapTMDBMovies(data: DataI[], type? : 'movie' | 'tv', limit?: number): (Content)[] {
     if (!Array.isArray(data)) return [];
 
-    let movies: (Content)[] = data.map((e: DataI) => mapTMDBMovie(e));
+    let movies: (Content)[] = data.map((e: DataI) => mapTMDBMovie(e, type));
     movies = movies.sort((a, b) => b.popularity - a.popularity);
 
     if (limit) {
