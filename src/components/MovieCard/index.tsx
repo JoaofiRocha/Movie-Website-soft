@@ -12,8 +12,8 @@ const MovieCard = ({ movie: {id, poster_path, title}, type = 'movie'  }: Props) 
         <article className={styles.displayMovie}>
             <Link to={`/details/${type}/${id}`}>
                 <img
-                    src={getTMDBImageUrl(poster_path, 'w400')}
-                    alt={title}
+                    src={getTMDBImageUrl(poster_path, 'w300')}
+                    alt={`Poster for ${title}`}
                     loading="lazy"
                     className={styles.image}
                 />

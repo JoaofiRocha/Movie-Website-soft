@@ -26,7 +26,7 @@ const Carrosel = ({ type = 'movie' }: props) => {
         const fetchedMovies = await fetchDiscover(genres, targetPage, type);
 
         if (fetchedMovies && fetchedMovies.length > 0) {
-            const mappedMovies = mapTMDBMovies(fetchedMovies);
+            const mappedMovies = mapTMDBMovies(fetchedMovies, type as 'movie' | 'tv');
 
             if (resetMovies) {
                 setMovies(mappedMovies);
