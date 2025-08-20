@@ -3,7 +3,7 @@ import styles from './styles.module.scss';
 import { getTMDBImageUrl } from '../../util/tmdb';
 
 interface Props {
-    movie: Content
+    movie: Content | FavoriteMovie
     type?: 'movie' | 'tv';
 }
 

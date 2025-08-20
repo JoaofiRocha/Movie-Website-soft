@@ -34,6 +34,7 @@ const Header = ({bar = true} : prop) => {
                                 </svg>
                             </div>
                             <div className={styles.dropdownContent}>
+                                <button className={styles.dropdownButton} onClick={() => nav(`/profile/${user.id}`)}>Profile </button>
                                 <button className={styles.dropdownButton} onClick={() => nav('/favorites')}>Favorites★ </button>
                                 <button className={styles.dropdownButton} onClick={() => nav('/settings/edit')}>Settings⚙︎ </button>
                                 <button className={styles.dropdownButton} onClick={() => logout()}>Logout⏎</button>
