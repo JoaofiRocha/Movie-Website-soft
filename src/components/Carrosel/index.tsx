@@ -64,7 +64,7 @@ const Carrosel = ({ type = 'movie' }: props) => {
     return (
         <section className={styles.area}>
             <h2>{type === 'movie' ? 'Movies' : 'Series'}</h2>
-            <ul id="movie_filter" className={styles.buttonList}>
+            <div id="movie_filter" className={styles.buttonList}>
                 {genreList.map(g => {
                     const isPressed = genres.includes(g.id);
                     return <button
@@ -76,7 +76,7 @@ const Carrosel = ({ type = 'movie' }: props) => {
                         {g.name}
                     </button>
                 })}
-            </ul>
+            </div>
             {movies.length === 0 ? (
                 <p>Loading movies...</p>
             ) : (

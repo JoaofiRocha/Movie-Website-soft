@@ -58,6 +58,9 @@
         border-radius: 3em;
         padding: 1em;
 
+        // .buttonUnpressed, .buttonPressed{
+        //     background-color: theme.$secundary-color-light;
+        // }
     }
 
 }
@@ -79,7 +82,8 @@
 
 .buttonUnpressed {
     border-style: none;
-    color: rgba(theme.$tertiary-color, 0.4);
+    background-color: transparent;
+    color: grey;
 }
 
 @media (max-width: 800px) {

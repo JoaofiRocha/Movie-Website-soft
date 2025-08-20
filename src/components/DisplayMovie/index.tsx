@@ -25,7 +25,7 @@ const DisplayMovie = ({ movie }: Prop) => {
                         <div className={styles.caption}>
                             <h3 className={styles.captionTitle}> {movie.title}</h3>
                             <section className={styles.captionSection}>
-                                <div className={styles.captionButtonDiv} >{findGenres(movie.genres).map(g => <button className={`${styles.captionButton} ${buttonStyles.btnTransparent} ${buttonStyles.btnOff}`} >{g}</button>)}</div>
+                                <div className={styles.captionButtonDiv} >{findGenres(movie.genres).map(g => <span key={g} className={`${styles.captionButton} ${buttonStyles.btnTransparent} ${buttonStyles.btnOff}`} >{g}</span>)}</div>
                                 <div className={styles.captionInformation}>
                                     <p>{movie.release_year}</p>
                                     <p>
