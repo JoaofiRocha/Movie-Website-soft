@@ -12,6 +12,7 @@ import Settings from './pages/Settings';
 import Favorites from './pages/Favorites';
 import PrivateRoutes from './components/PrivateRoutes/index';
 import SearchPage from './pages/SearchPage';
+import Profile from './pages/Profile';
 
 function App() {
   return (
@@ -26,6 +27,8 @@ function App() {
         <Route path="signup" element={<CreateAccount />} />
         <Route path="login" element={<Login />} />
 
+        <Route path="profile/:id" element={<Profile />} />
+
         <Route element={<PrivateRoutes />}>
           <Route path="favorites" element={<Favorites />} />
 
@@ -34,9 +37,10 @@ function App() {
             <Route path="edit" element={<EditAccount />} />
           </Route>
         </Route>
-      </Route>
 
-      <Route path="*" element={<ErrorPage />} />
+        <Route path="error" element={<ErrorPage />} />
+        <Route path="*" element={<ErrorPage />} />
+      </Route>
     </Routes>
   );
 }

@@ -1,27 +1,31 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Mousewheel, FreeMode } from 'swiper/modules';
+import { Navigation, Pagination, Mousewheel, FreeMode, Virtual } from 'swiper/modules';
 import styles from './styles.module.scss';
 import MovieCard from '../../MovieCard/index';
  
 interface prop {
-  movies: Content[];
+  movies: (Content | FavoriteMovie)[];
   nearEnd?: () => void;
   maxMovies?: number;
   ref?: React.RefObject<any>;
   type?: 'movie' | 'tv';
+  className? : string;
+  virtual?: boolean;
 }
  
 const Swipe = ({
+  className,
   movies,
   nearEnd,
   maxMovies = 1000,
   ref,
   type = 'movie',
+  virtual,
 }: prop) => {
   return (
-    <div className={styles.section}>
+    <div className={`${styles.section} ${className}`}>
       <Swiper
-        modules={[Navigation, Pagination, Mousewheel, FreeMode]}
+        modules={[Navigation, Pagination, Mousewheel, FreeMode, ...(virtual ? [Virtual] : [])]}
         className={styles.carrosel}
         slidesPerView={3.5}
         spaceBetween={20}
@@ -33,6 +37,7 @@ const Swipe = ({
           if (movies.length <= maxMovies && nearEnd) nearEnd();
         }}
         onSwiper={(swiper) => (ref ? (ref.current = swiper) : null)}
+        virtual = {virtual ?? false}
         breakpoints={{
           0: {
             slidesPerView: 2.5,
@@ -52,7 +57,7 @@ const Swipe = ({
       >
         {movies.map((movie) => (
           <SwiperSlide className={styles.item} key={movie.id}>
-            <MovieCard movie={movie} type={type} />
+            <MovieCard movie={movie} type={type ?? movie.type as 'movie' | 'tv'} />
           </SwiperSlide>
         ))}
       </Swiper>

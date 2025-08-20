@@ -10,7 +10,7 @@ interface AccountStore {
 }
 
 export const useAccountStore = create<AccountStore>((set, get) => ({
-    user: getLocalCurrentUser() ?? null,
+    user: getLocalCurrentUser(),
     setAccount: (data) => set(() => {
         localStorage.setItem('currentUser', data ? JSON.stringify(data) : '');
         return { user: data};

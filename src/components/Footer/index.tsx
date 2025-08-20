@@ -10,7 +10,12 @@ const Footer = () => {
                     <h3 className={styles.h3}>Navigation</h3>
                     <ul className={styles.ul}>
                         <li><a href="/">Home</a></li>
-                        {user ? <li><a href="/favorites">Favorites</a></li> : null}
+                        {user ?
+                        <>
+                         <li><a href="/favorites">Favorites</a></li>
+                         <li><a href={`/profile/${user.id}`}>Favorites</a></li>
+                         </>
+                        : null}
                     </ul>
                 </section>
 

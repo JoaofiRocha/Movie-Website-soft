@@ -8,9 +8,10 @@ interface UsersStore {
     addUser: (data : User) => void;
     removeUser: (data : string) => void;
     modifyUser: (data : User) => void;
+    getUser: (id : string) => User | null;
 }
 
-export const useUsersStore = create<UsersStore>((set) => ({
+export const useUsersStore = create<UsersStore>((set, get) => ({
     users: getLocalUsers(),
     setUsers: (data) => set({users : JSON.parse(data)}),
     setUsersLocal: () => set({users: getLocalUsers()}),
@@ -34,6 +35,9 @@ export const useUsersStore = create<UsersStore>((set) => ({
         saveUsersToLocal(updatedUsers);
         return {users: updatedUsers }
     }),
+    getUser: (id) => {
+        return get().users?.filter(u => u.id === id)[0] ?? null;
+    }
 }));
 
 

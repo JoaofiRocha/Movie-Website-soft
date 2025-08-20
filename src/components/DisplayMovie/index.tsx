@@ -10,7 +10,6 @@ interface Prop {
 
 const DisplayMovie = ({ movie }: Prop) => {
     const isMobile = window.innerWidth < 800;
-    // 'w1920_and_h700_multi_faces'
     const imageSize = isMobile ? 'w780' : 'w1280_and_h720_multi_faces';
     const imageUrl = getTMDBImageUrl(movie ? (movie.backdrop_path ?? movie.poster_path ?? '') : '', imageSize);
 
@@ -18,12 +17,10 @@ const DisplayMovie = ({ movie }: Prop) => {
         <article className={styles.displayMovie}>
             {movie ? (
                 <>
-                    <link rel="preload" fetchPriority="high" as="image" href={imageUrl} />
-
                     <FavoriteButton className={styles.favorite} movie={movie} type={'movie'} />
                     <Link to={`/details/movie/${movie.id}`} className={styles.link} style={{ "--background-image": `url(${imageUrl})` } as React.CSSProperties}>
                         <div className={styles.caption}>
-                            <h3 className={styles.captionTitle}> {movie.title}</h3>
+                            <h1 className={styles.captionTitle}> {movie.title}</h1>
                             <section className={styles.captionSection}>
                                 <div className={styles.captionButtonDiv} >{findGenres(movie.genres).map(g => <span key={g} className={`${styles.captionButton} ${buttonStyles.btnTransparent} ${buttonStyles.btnOff}`} >{g}</span>)}</div>
                                 <div className={styles.captionInformation}>
