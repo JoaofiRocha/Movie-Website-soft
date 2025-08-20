@@ -65,6 +65,7 @@ export const fetchDiscover = async (genres: string[], page: number, type: string
             sort_by: 'popularity.desc',
             'vote_average.gte': '5',
             'vote_count.gte': '1',
+            include_image_language: 'null'
         })
 
         return response.results;

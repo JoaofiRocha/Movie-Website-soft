@@ -106,3 +106,13 @@
   padding: 1em;
 }
 
+.name{
+  text-wrap:unset;
+  text-align: end;
+  font-size: clamp(1em, 1.5vw, 1.16em);
+}
+
+.title{
+  font-size: clamp(3em, 4vw, 4em);
+}
+

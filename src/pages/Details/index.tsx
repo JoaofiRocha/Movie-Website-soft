@@ -48,7 +48,7 @@ const Details = () => {
                             <p>{content.release_date?.split('-')[0] ?? `${content.first_air_date?.split('-')[0]} - ${content.last_air_date?.split('-')[0]}`}</p>
                             <p>{content.runtime ? `${content.runtime} min` : (content.number_of_seasons ? `S ${content.number_of_seasons}` : '')}</p>
                             <div className={styles.buttonsDiv}>
-                                {content.genres.map(genre => { return <button className={buttonStyles.btnOff} onClick={() => nav(`/search/${genre.name}`)}>{genre.name}</button> })}
+                                {content.genres.map(genre => { return <button key={genre.id} className={buttonStyles.btnOff} onClick={() => nav(`/search/${genre.name}`)}>{genre.name}</button> })}
                             </div>
                         </div>
                     </div>
