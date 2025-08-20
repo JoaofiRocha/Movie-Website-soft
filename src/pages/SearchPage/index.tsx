@@ -52,7 +52,7 @@ const SearchPage = () => {
     return (
         <main className={styles.main}>
             <Search className={styles.bar} initialValue={query} type={'bar'} placeholder='Search for Movie or Tv ...' />
-
+            Fazer um teste simples
             <List className={styles.list} query={query} listMovie={movies} hasFilter={false} pageMax={20} numberOfPages={pages} onChangePage={setCurrentPage} />
         </main>
     );
