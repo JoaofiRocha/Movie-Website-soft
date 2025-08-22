@@ -7,6 +7,7 @@ interface param {
     language?: 'en-US' | 'pt-BR',
     page?: string,
     query?: string,
+    year?: string,
     include_adult?: string,
     include_image_language?: string,
     with_genres?: string,
@@ -14,6 +15,7 @@ interface param {
     'vote_average.gte'?: string,
     'vote_count.gte'?: string,
     append_to_response?: string,
+    combined_credits?: string,
 }
 
 

@@ -20,12 +20,8 @@ const Details = () => {
             return;
 
         const response = await fetchDetails(id, type);
-        setContent(response);
+        setContent(response as MovieDetail);
     }
-
-    useEffect(() => {
-        getContent();
-    }, []);
 
     useEffect(() => {
         getContent();
@@ -101,7 +97,7 @@ const Details = () => {
 
 
                     <h2 className={styles.similarTitle}>Similar Content</h2>
-                    {content.similar ? <Swipe movies={content.similar} type={type === 'movie' || type === 'tv' ? type : undefined} /> : <h1>{JSON.stringify(content.similar)}</h1>}
+                    {content.similar ? <Swipe movies={content.similar as Poster[]} type={type === 'movie' || type === 'tv' ? type : undefined} /> : <h1>{JSON.stringify(content.similar)}</h1>}
 
 
 

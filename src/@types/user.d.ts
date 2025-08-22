@@ -3,5 +3,4 @@ interface User {
     user: string;
     email: string;
     password: string;
-    favorites: FavoriteMovie[];
 }

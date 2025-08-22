@@ -2,17 +2,17 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Mousewheel, FreeMode, Virtual } from 'swiper/modules';
 import styles from './styles.module.scss';
 import MovieCard from '../../MovieCard/index';
- 
+
 interface prop {
-  movies: (Content | FavoriteMovie)[];
+  movies: Poster[];
   nearEnd?: () => void;
   maxMovies?: number;
   ref?: React.RefObject<any>;
   type?: 'movie' | 'tv';
-  className? : string;
+  className?: string;
   virtual?: boolean;
 }
- 
+
 const Swipe = ({
   className,
   movies,
@@ -37,7 +37,7 @@ const Swipe = ({
           if (movies.length <= maxMovies && nearEnd) nearEnd();
         }}
         onSwiper={(swiper) => (ref ? (ref.current = swiper) : null)}
-        virtual = {virtual ?? false}
+        virtual={virtual ?? false}
         breakpoints={{
           0: {
             slidesPerView: 2.5,
@@ -57,12 +57,12 @@ const Swipe = ({
       >
         {movies.map((movie) => (
           <SwiperSlide className={styles.item} key={movie.id}>
-            <MovieCard movie={movie} type={type ?? movie.type as 'movie' | 'tv'} />
+            <MovieCard movie={movie} type={movie.type as 'movie' | 'tv' ?? type} />
           </SwiperSlide>
         ))}
       </Swiper>
     </div>
   );
 };
- 
+
 export default Swipe;

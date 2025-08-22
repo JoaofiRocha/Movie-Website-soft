@@ -13,12 +13,14 @@ import Favorites from './pages/Favorites';
 import PrivateRoutes from './components/PrivateRoutes/index';
 import SearchPage from './pages/SearchPage';
 import Profile from './pages/Profile';
+import PersonDetails from './pages/Details/PersonDetails';
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
+        <Route path="details/person/:id" element={<PersonDetails />}/>
         <Route path="details/:type/:id" element={<Details />} />
       </Route>
 

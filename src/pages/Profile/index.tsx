@@ -3,11 +3,13 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useUsersStore } from "../../store/useUsersStore";
 import { useEffect } from "react";
 import Swipe from '../../components/Carrosel/Swiper/index';
+import { useFavoritesStore } from '../../store/useFavoritesStore';
 
 
 const Profile = () => {
     const { id } = useParams();
     const { getUser } = useUsersStore();
+    const { getFavorites } = useFavoritesStore();
     const nav = useNavigate();
 
     const user = getUser(id as string);
@@ -32,8 +34,8 @@ const Profile = () => {
             </div>
 
             <div className={`${styles.div} ${styles.swiperDiv}`}>
-                Favorites
-                <Swipe virtual className={styles.swiper} maxMovies={100} movies={user.favorites} />
+                <h2>Favorites</h2>
+                <Swipe virtual className={styles.swiper} maxMovies={100} movies={getFavorites(user.id)} />
             </div>
 
         </main >

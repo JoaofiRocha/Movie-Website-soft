@@ -3,7 +3,7 @@ import { useAccountStore } from '../../store/useAccountStore';
 import styles from './styles.module.scss';
 import buttonStyles from '../../theme/_button.module.scss';
 import { useUsersStore } from '../../store/useUsersStore';
-import { doesUserExist } from '../../util/userStoreUtil';
+import { doesUserExist } from '../../util/storeUtil';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 

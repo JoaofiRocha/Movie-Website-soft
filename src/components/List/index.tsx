@@ -94,7 +94,7 @@ const List = ({ className, pageMax = 5, listMovie, onChangePage, hasFilter = tru
 
                                 <div className={styles.info}>
                                     <h3 className={styles.title}>{movie.title}</h3>
-                                    <p className={styles.p}>{Math.round(movie.rating * 10) / 10}</p>
+                                    <p className={styles.p}>{Math.round(movie.rating?? 0 * 10) / 10}</p>
                                     <p className={styles.p}>{movie.type}</p>
                                 </div>
                             </Link>

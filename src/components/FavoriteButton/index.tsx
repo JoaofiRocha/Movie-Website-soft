@@ -1,6 +1,5 @@
 import buttonStyle from '../../theme/_button.module.scss';
 import { useAccountStore } from '../../store/useAccountStore';
-import { useUsersStore } from '../../store/useUsersStore';
 import { useFavoritesStore } from '../../store/useFavoritesStore';
 import { useNavigate } from 'react-router-dom';
 
@@ -12,39 +11,30 @@ interface props {
 }
 
 const FavoriteButton = ({ type, movie, isFavorite, className }: props) => {
-    const { getFavorites, addFavorites, removeFavorite } = useFavoritesStore();
-    const { modifyUser } = useUsersStore();
-    const { setAccount, user } = useAccountStore();
+    const { addFavorites, removeFavorite, hasFavorite } = useFavoritesStore();
+    const { user } = useAccountStore();
     const nav = useNavigate();
 
-    const isCurrentlyFavorite = getFavorites()?.some(fav => 
-            fav.id === movie.id && fav.type === type
-        );
+    const isCurrentlyFavorite : boolean = user ? hasFavorite(movie.id ,user.id) : false;
 
     const handleClick = () => {
         if (!user) {
             return;
         }
 
-        let updatedFavorites;
-
         if (isCurrentlyFavorite) {
-            updatedFavorites = removeFavorite(movie.id,type);
+            removeFavorite(movie.id, type, user.id);
         }
         else {
-            const favorite : FavoriteMovie = {
+            const favorite: FavoriteMovie = {
                 id: movie.id,
                 type: type,
-                title:movie.title,
+                title: movie.title,
                 poster_path: movie.poster_path,
-                rating: 'rating' in movie ? movie.rating : movie.vote_average
+                rating: 'rating' in movie ? (movie.rating ?? 0) : 'vote_average' in movie ? (movie.vote_average ?? 0) : 0,
             };
-            updatedFavorites = addFavorites(favorite);
+            addFavorites(favorite, user.id);
         }
-
-        const updatedUser: User = { ...user, favorites: updatedFavorites };
-        setAccount(updatedUser);
-        modifyUser(updatedUser);
     }
 
     return (

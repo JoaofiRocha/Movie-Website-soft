@@ -1,15 +1,14 @@
 import { create } from 'zustand';
-import { getLocalCurrentUser } from '../util/userStoreUtil';
+import { getLocalCurrentUser } from '../util/storeUtil';
 
 interface AccountStore {
     user: User | null;
     setAccount: (data: User | null) => void;
     setAccountLocal: () => void;
     logout: () => void;
-    getUserFavorites: () => FavoriteMovie[];
 }
 
-export const useAccountStore = create<AccountStore>((set, get) => ({
+export const useAccountStore = create<AccountStore>((set) => ({
     user: getLocalCurrentUser(),
     setAccount: (data) => set(() => {
         localStorage.setItem('currentUser', data ? JSON.stringify(data) : '');
@@ -21,12 +20,6 @@ export const useAccountStore = create<AccountStore>((set, get) => ({
             localStorage.setItem('currentUser', '');
         }
         return {user: null}
-    }),
-    getUserFavorites: () => {
-        const state : User | null = get().user;
-        if(!state)
-            return [];
-        return state.favorites ?? [];
-    }
+    })
     
 }));

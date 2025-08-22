@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 import { useAccountStore } from '../../../store/useAccountStore';
 import styles from './styles.module.scss';
 import { useUsersStore } from '../../../store/useUsersStore';
-import { doesUserExist } from '../../../util/userStoreUtil'; 
+import { doesUserExist } from '../../../util/storeUtil'; 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -19,7 +19,7 @@ const EditAccount = () => {
             return;
 
         if (data && !doesUserExist(users, data)) {
-            const completeUser = { ...data, id: user.id, favorites: user.favorites }
+            const completeUser = { ...data, id: user.id}
             modifyUser(completeUser);
             setAccount(completeUser);
             setError(false);

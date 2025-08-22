@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import {getLocalUsers, saveUsersToLocal} from '../util/userStoreUtil.ts';
+import {getLocalUsers, saveUsersToLocal} from '../util/storeUtil.ts';
 
 interface UsersStore {
     users: User[] | null;

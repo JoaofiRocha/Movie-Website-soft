@@ -3,7 +3,7 @@ import { useAccountStore } from '../../store/useAccountStore';
 import styles from './styles.module.scss';
 import buttonStyles from '../../theme/_button.module.scss';
 import { useUsersStore } from '../../store/useUsersStore';
-import { doesAccountMatch } from '../../util/userStoreUtil';
+import { doesAccountMatch } from '../../util/storeUtil';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 

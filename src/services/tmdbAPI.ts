@@ -1,4 +1,4 @@
-import { mapDetails } from './mappers';
+import { mapDetails, mapPerson } from './mappers';
 import axiosDefault from './axiosDefault';
 
 export const fetchPopularMovies = async (currentPage: number = 1) => {
@@ -11,9 +11,9 @@ export const fetchPopularMovies = async (currentPage: number = 1) => {
     }
 }
 
-export const fetchMovie = async (name: string) => {
+export const fetchMovie = async (name: string, year? : string) => {
     try {
-        const response = await axiosDefault('GET', 'search/movie', { query: name, include_adult: 'false', language: 'en-US', page: '1' })
+        const response = await axiosDefault('GET', 'search/movie', { query: name, year: year , include_adult: 'false', language: 'en-US', page: '1' })
         return response.results;
     }
     catch (error) {
@@ -25,7 +25,7 @@ export const fetchMulti = async (name: string, page: number = 1) => {
     try {
         const response = await axiosDefault('GET', 'search/multi', { query: name, include_adult: 'false', language: 'en-US', page: `${page}` })
         return {
-            results: response.results.filter((e: any) => e.media_type !== 'person'),
+            results: response.results,
             total_pages: response.total_pages
         };
     }
@@ -71,18 +71,20 @@ export const fetchDiscover = async (genres: string[], page: number, type: string
         return response.results;
     }
     catch (err) {
-        console.log('error fetching backdrops: ', err);
+        console.log('error fetching discovery: ', err);
     }
 }
 
 export const fetchDetails = async (id: string, type: string = 'movie') => {
     try {
         const response = await axiosDefault('GET', `${type}/${id}`, {
-            append_to_response: 'credits,similar'
+            append_to_response: type === 'person' ? 'combined_credits' : 'credits,similar'
         })
-        return mapDetails(response);
+        if(type !== 'person')
+            return mapDetails(response, type as 'movie' | 'tv');
+        return mapPerson(response);
     }
     catch (err) {
-        console.log('error fetching backdrops: ', err);
+        console.log('error fetching details: ', err);
     }
 }

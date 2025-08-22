@@ -80,7 +80,7 @@ const Carrosel = ({ type = 'movie' }: props) => {
             {movies.length === 0 ? (
                 <p>Loading movies...</p>
             ) : (
-                <Swipe movies={movies} nearEnd={getMovies} ref={swiperRef} type={type}/>
+                <Swipe movies={movies as Poster[]} nearEnd={getMovies} ref={swiperRef} type={type}/>
             )}
         </section>
     )

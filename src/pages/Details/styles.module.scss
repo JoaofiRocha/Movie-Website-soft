@@ -87,6 +87,22 @@
         justify-content: center;
     }
 
+    .profileDiv{
+        display: flex;
+        justify-content: center;
+        width: 40%;
+        align-items: end;
+
+        @media (max-width: 800px) {
+            width: 100%;
+        }
+    }
+
+    .profileImage{
+        height: 330px;
+        border-radius: 2em;
+        padding: 0.5em;
+    }
 }
 
 .info {

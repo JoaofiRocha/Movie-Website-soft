@@ -44,4 +44,21 @@ export function doesAccountMatch(users: User[] | null ,userData: User): User | n
     return null;
 }
 
+export function getLocalFavorites(): FavoriteLists[] | null {
+    try {
+        const storedFavorites = localStorage.getItem('favorites');
+        return storedFavorites ? JSON.parse(storedFavorites) : null;
+    } catch (error) {
+        return [];
+    }
+}
+
+export function saveFavoritesToLocal(favorites: FavoriteLists[] | undefined): void {
+    if (!favorites)
+        return;
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+}
+
+
+
 
