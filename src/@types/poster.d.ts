@@ -3,4 +3,5 @@ interface Poster{
     poster_path: string,
     title: string,
     type: 'movie' | 'tv',
+    rating: number,
   }

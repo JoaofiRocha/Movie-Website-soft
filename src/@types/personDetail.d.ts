@@ -11,6 +11,7 @@ interface PersonDetail {
         title: string,
         character?: string,
         type: 'movie' | 'tv',
+        rating:number
     }[],
     credits_crew?: {
         id: number,
@@ -18,6 +19,7 @@ interface PersonDetail {
         title: string,
         job?: string,
         type: 'movie' | 'tv',
+        rating:number
     }[],
     gender: string,
     area?: string,

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 interface props {
     type: 'movie' | 'tv'
-    movie: Content | MovieDetail | FavoriteMovie,
+    movie: Content | MovieDetail | Poster | FavoriteMovie,
     isFavorite?: boolean,
     className?: string
 }

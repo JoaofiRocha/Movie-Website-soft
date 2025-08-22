@@ -90,14 +90,16 @@ export function mapPerson(person: any): PersonDetail {
             poster_path: c.poster_path,
             title: c.title || c.name,
             character: c.character,
-            type: c.media_type
+            type: c.media_type,
+            rating: c.vote_average ?? c.rating ?? 0,
         })),
         credits_crew: person.combined_credits.crew.map((c: any) => ({
             id: c.id,
             poster_path: c.poster_path,
             title: c.title || c.name,
             job: c.job,
-            type: c.media_type
+            type: c.media_type,
+            rating: c.vote_average ?? c.rating ?? 0
         })),
         area: person.known_for_department,
         type: person.media_type,

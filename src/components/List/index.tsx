@@ -8,7 +8,7 @@ interface Props {
     items?: number[];
     className?: string;
     pageMax?: number;
-    listMovie: FavoriteMovie[] | Content[];
+    listMovie: Poster[];
     onChangePage?: (page: number) => void;
     hasFilter?: boolean;
     numberOfPages?: number;
@@ -19,9 +19,9 @@ interface Props {
 
 const List = ({ className, pageMax = 5, listMovie, onChangePage, hasFilter = true, numberOfPages, query }: Props) => {
     const [selectedPage, setSelectedPage] = useState<number>(0);
-    const [movies, setMovies] = useState<(FavoriteMovie | Content)[]>(listMovie)
+    const [movies, setMovies] = useState<Poster[]>(listMovie)
     const [filter, setFilter] = useState<string>('');
-    const [filteredList, setFilteredList] = useState<(FavoriteMovie | Content)[]>(listMovie)
+    const [filteredList, setFilteredList] = useState<Poster[]>(listMovie)
 
     const pages = numberOfPages ?? Math.ceil(filteredList.length / pageMax);
 
@@ -63,7 +63,7 @@ const List = ({ className, pageMax = 5, listMovie, onChangePage, hasFilter = tru
     },[query])
 
 
-    const changePage = (index: number = selectedPage, list: (FavoriteMovie | Content)[] = filteredList) => {
+    const changePage = (index: number = selectedPage, list: Poster[] = filteredList) => {
         if (onChangePage) {
             console.log(index + 1);
             onChangePage(index + 1);
@@ -94,7 +94,7 @@ const List = ({ className, pageMax = 5, listMovie, onChangePage, hasFilter = tru
 
                                 <div className={styles.info}>
                                     <h3 className={styles.title}>{movie.title}</h3>
-                                    <p className={styles.p}>{Math.round(movie.rating?? 0 * 10) / 10}</p>
+                                    <p className={styles.p}>{Math.round((movie.rating?? 0) * 10) / 10}</p>
                                     <p className={styles.p}>{movie.type}</p>
                                 </div>
                             </Link>

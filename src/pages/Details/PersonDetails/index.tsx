@@ -3,7 +3,7 @@ import styles from '../styles.module.scss';
 import { useEffect, useState } from "react";
 import { fetchDetails } from "../../../services/tmdbAPI";
 import { getTMDBImageUrl } from "../../../util/tmdb";
-import Swipe from "../../../components/Carrosel/Swiper";
+import List from '../../../components/List';
 
 const PersonDetails = () => {
     const { id } = useParams();
@@ -54,12 +54,21 @@ const PersonDetails = () => {
 
                     </div>
 
+                    {content.credits_cast && content.credits_cast.length > 0 ?
+                        <>
+                            <h2 className={styles.similarTitle}>Movies {content.name} is in</h2>
+                            <List pageMax={8} listMovie={content.credits_cast} />
+                        </>
+                        : null
+                    }
 
-                    <h2 className={styles.similarTitle}>Movies {content.name} is in</h2>
-                    {content.credits_cast ? <Swipe virtual maxMovies={1000} movies={content.credits_cast} /> : ''}
-
-                    <h2 className={styles.similarTitle}>Movies {content.name} is a crew</h2>
-                    {content.credits_cast ? <Swipe virtual maxMovies={1000} movies={content.credits_crew as Poster[]} /> : ''}
+                    {content.credits_crew && content.credits_crew.length > 0 ?
+                        <>
+                            <h2 className={styles.similarTitle}>Movies {content.name} is a crew</h2>
+                            <List pageMax={8} listMovie={content.credits_crew} />
+                        </>
+                        : null
+                    }
 
 
                 </main >
