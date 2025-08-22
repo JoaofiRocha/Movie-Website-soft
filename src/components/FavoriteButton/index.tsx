@@ -1,6 +1,6 @@
 import buttonStyle from '../../theme/_button.module.scss';
 import { useAccountStore } from '../../store/useAccountStore';
-import { useFavoritesStore } from '../../store/useFavoritesStore';
+import { useActionStore } from '../../store/useActionsStore';
 import { useNavigate } from 'react-router-dom';
 
 interface props {
@@ -11,11 +11,11 @@ interface props {
 }
 
 const FavoriteButton = ({ type, movie, isFavorite, className }: props) => {
-    const { addFavorites, removeFavorite, hasFavorite } = useFavoritesStore();
+    const { addAction, removeAction, hasAction } = useActionStore();
     const { user } = useAccountStore();
     const nav = useNavigate();
 
-    const isCurrentlyFavorite : boolean = user ? hasFavorite(movie.id ,user.id) : false;
+    const isCurrentlyFavorite : boolean = user ? hasAction(movie.id, user.id, type, 'favorite') : false;
 
     const handleClick = () => {
         if (!user) {
@@ -23,7 +23,7 @@ const FavoriteButton = ({ type, movie, isFavorite, className }: props) => {
         }
 
         if (isCurrentlyFavorite) {
-            removeFavorite(movie.id, type, user.id);
+            removeAction(movie.id, type, user.id, 'favorite');
         }
         else {
             const favorite: FavoriteMovie = {
@@ -33,7 +33,7 @@ const FavoriteButton = ({ type, movie, isFavorite, className }: props) => {
                 poster_path: movie.poster_path,
                 rating: 'rating' in movie ? (movie.rating ?? 0) : 'vote_average' in movie ? (movie.vote_average ?? 0) : 0,
             };
-            addFavorites(favorite, user.id);
+            addAction(favorite, user.id, 'favorite');
         }
     }
 

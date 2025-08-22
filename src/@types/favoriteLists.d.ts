@@ -1,4 +1,6 @@
 interface FavoriteLists {
     userId: string;
-    favorites: FavoriteMovie[];
+    favorite: FavoriteMovie[];
+    watched: FavoriteMovie[];
+    watchlist: FavoriteMovie[];
 }
