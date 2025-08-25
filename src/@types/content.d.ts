@@ -9,4 +9,5 @@ interface Content {
     popularity: number,
     overview: string,
     type: string,
+    area?: string,
 }

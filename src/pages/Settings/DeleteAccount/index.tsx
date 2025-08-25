@@ -5,13 +5,13 @@ import { useUsersStore } from '../../../store/useUsersStore';
 import { useNavigate } from 'react-router-dom';
 import Modal from '../../../components/Modal';
 import buttonStyles from '../../../theme/_button.module.scss';
-import { useFavoritesStore } from '../../../store/useFavoritesStore';
+import { useActionStore } from '../../../store/useActionsStore';
 
 const DeleteAccount = () => {
     const [modalState, setModalState] = useState<boolean>(false);
     const { user, setAccount } = useAccountStore();
     const { removeUser } = useUsersStore();
-    const {removeUserFavorite} = useFavoritesStore();
+    const {removeUserAction} = useActionStore();
     const nav = useNavigate();
 
 
@@ -20,7 +20,7 @@ const DeleteAccount = () => {
             return;
         removeUser(user.id);
         setAccount(null);
-        removeUserFavorite(user.id);
+        removeUserAction(user.id);
         nav('/');
     }
 

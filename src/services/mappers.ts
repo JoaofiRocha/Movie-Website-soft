@@ -11,6 +11,7 @@ interface DataI {
     popularity: number;
     overview: string;
     media_type: string;
+    known_for_department: string;
 }
 
 export function mapTMDBMovie(data: DataI, type?: 'movie' | 'tv' | 'person'): Content {
@@ -42,6 +43,7 @@ export function mapTMDBMovie(data: DataI, type?: 'movie' | 'tv' | 'person'): Con
             title: data.name,
             poster_path: data.profile_path,
             type: data.media_type,
+            area: data.known_for_department
         }
     }
 }

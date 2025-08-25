@@ -4,4 +4,5 @@ interface Poster{
     title: string,
     type: 'movie' | 'tv',
     rating: number,
+    area?: string,
   }

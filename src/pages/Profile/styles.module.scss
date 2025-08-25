@@ -1,14 +1,14 @@
 @use '../../theme/variables.scss' as theme;
 
-.main{
+.main {
     padding: 8em;
 }
 
-.iconSvg{
+.iconSvg {
     width: 70px;
 }
 
-.name{
+.name {
     font-size: clamp(1.5em, 4vw, 3em);
 }
 
@@ -25,22 +25,91 @@
     align-items: center;
     background-color: theme.$secundary-color;
 
-    @media (max-width:700px){
+    @media (max-width:700px) {
         min-width: 330px;
     }
 }
 
-.banner{
+.banner {
     display: flex;
     flex-direction: row;
     width: 100%;
 }
 
-.swiper{
-    padding: 1em;
-}
+// .swiper{
+//     padding: 1em;
+// }
 
-.swiperDiv{
+.listDiv {
     width: 100%;
 }
 
+.list {
+    display: flex;
+    gap: 1em;
+    width: 100%;
+    overflow-x: scroll;
+    row-gap: 0;
+}
+
+.card {
+    min-width: 250px;
+    max-width: 250px;
+    height: 380px;
+    margin-block: 0.5em;
+}
+
+.listTitle {
+    font-size: 30px;
+    margin: 0;
+}
+
+.btn {
+    min-width: 250px;
+    height: 380px;
+    margin: auto;
+    margin-block: 0.5em;
+    border-radius: 2em;
+
+    @media (max-width: 800px) {
+        border-radius: 0.5em;
+    }
+}
+
+@media (max-width: 1300px) {
+    .list {
+        flex-wrap: wrap;
+    }
+}
+
+@media(max-width: 780px) {
+    .card {
+        min-width: 150px;
+        max-width: 150px;
+        max-height: 230px;
+    }
+
+    .btn {
+        min-width: 150px;
+        max-width: 150px;
+        max-height: 230px;
+    }
+}
+
+@media(max-width: 737px) {
+    .list {
+        flex-wrap: nowrap;
+    }
+
+    .card {
+        min-width: 150px;
+        max-width: 150px;
+        max-height: 230px;
+    }
+
+    .btn {
+        min-width: 150px;
+        max-width: 150px;
+        max-height: 230px;
+    }
+}

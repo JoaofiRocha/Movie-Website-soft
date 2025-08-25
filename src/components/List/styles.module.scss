@@ -14,6 +14,7 @@
 
 .contents {
     overflow-y: scroll;
+    overflow-x: hidden;
     background-color: theme.$secundary-color-light;
     border-bottom: 0.1em theme.$tertiary-color solid;
     padding: 0;
@@ -107,9 +108,9 @@
     background-color: rgba(theme.$primary-color, 0.7);
     font-size: clamp(1.5em, 1.5vw, 1.5em);
 
-    &:focus{
+    &:focus {
         border-color: inherit;
         outline: none;
-        transform: scale(1.05,1.2);
+        transform: scale(1.05, 1.2);
     }
 }

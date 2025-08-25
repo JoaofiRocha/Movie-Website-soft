@@ -1,23 +1,23 @@
-import { useAccountStore } from "../../store/useAccountStore";
 import styles from './styles.module.scss';
 import { useEffect, useState } from "react";
 import List from '../../components/List/index';
-import { useFavoritesStore } from "../../store/useFavoritesStore";
+import { useActionStore } from "../../store/useActionsStore";
+import { useParams } from "react-router-dom";
 
 
 const Favorites = () => {
     const [favoriteMovies, setFavoriteMovies] = useState<FavoriteMovie[]>([]);
     const moviesPerPage = 8;
-    const { user } = useAccountStore();
-    const { favorites ,getFavorites } = useFavoritesStore();
+    const { actions, getActions } = useActionStore();
+    const {type,id} = useParams();
 
 
 
 
     useEffect(() => {
-        if(user)
-            setFavoriteMovies(getFavorites(user.id));
-    }, [favorites])
+        if(id)
+            setFavoriteMovies(getActions(id, type as 'favorite' | 'watched' | 'watchlist'));
+    }, [actions, id])
 
     return (
         <main className={styles.main}>

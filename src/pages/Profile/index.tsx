@@ -2,14 +2,14 @@ import styles from './styles.module.scss';
 import { useNavigate, useParams } from "react-router-dom";
 import { useUsersStore } from "../../store/useUsersStore";
 import { useEffect } from "react";
-import Swipe from '../../components/Carrosel/Swiper/index';
-import { useFavoritesStore } from '../../store/useFavoritesStore';
+import { useActionStore } from '../../store/useActionsStore';
+import MovieCard from '../../components/MovieCard';
 
 
 const Profile = () => {
     const { id } = useParams();
     const { getUser } = useUsersStore();
-    const { getFavorites } = useFavoritesStore();
+    const { getSomeActions, actionIsEmpty } = useActionStore();
     const nav = useNavigate();
 
     const user = getUser(id as string);
@@ -33,10 +33,53 @@ const Profile = () => {
 
             </div>
 
-            <div className={`${styles.div} ${styles.swiperDiv}`}>
-                <h2>Favorites</h2>
-                <Swipe virtual className={styles.swiper} maxMovies={100} movies={getFavorites(user.id)} />
-            </div>
+            {actionIsEmpty(id, 'favorite') ? '' :
+                <div className={`${styles.div} ${styles.listDiv}`}>
+                    <h2 className={styles.listTitle}><a href={`/list/favorites/${user.id}`}> Favorites</a></h2>
+                    <div className={styles.list}>
+                        <>
+                            {getSomeActions(user.id, 'favorite').map(e => {
+                                return (
+                                    <MovieCard className={styles.card} movie={e} />
+                                )
+                            })}
+                            <button className={styles.btn} onClick={() => nav(`/list/favorites/${id}`)}> See All </button>
+                        </>
+                    </div>
+                </div>
+            }
+
+            {actionIsEmpty(id, 'watched') ? '' :
+                <div className={`${styles.div} ${styles.listDiv}`}>
+                    <h2 className={styles.listTitle}><a href={`/list/watched/${user.id}`}> Watched</a></h2>
+                    <div className={styles.list}>
+                        <>
+                            {getSomeActions(user.id, 'watched').map(e => {
+                                return (
+                                    <MovieCard className={styles.card} movie={e} />
+                                )
+                            })}
+                            <button className={styles.btn} onClick={() => nav(`/list/watched/${id}`)}> See All </button>
+                        </>
+                    </div>
+                </div>
+            }
+
+            {actionIsEmpty(id, 'watchlist') ? '' :
+                <div className={`${styles.div} ${styles.listDiv}`}>
+                    <h2 className={styles.listTitle}><a href={`/list/watchlist/${user.id}`}> Watchlist</a></h2>
+                    <div className={styles.list}>
+                        <>
+                            {getSomeActions(user.id, 'watchlist').map(e => {
+                                return (
+                                    <MovieCard className={styles.card} movie={e} />
+                                )
+                            })}
+                            <button className={styles.btn} onClick={() => nav(`/list/watchlist/${id}`)}> See All </button>
+                        </>
+                    </div>
+                </div>
+            }
 
         </main >
     );
