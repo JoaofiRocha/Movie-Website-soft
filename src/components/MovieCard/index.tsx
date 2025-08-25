@@ -5,11 +5,12 @@ import { getTMDBImageUrl } from '../../util/tmdb';
 interface Props {
     movie: Poster;
     type?: 'movie' | 'tv';
+    className?: string;
 }
 
-const MovieCard = ({ movie: { id, poster_path, title }, type = 'movie' }: Props) => {
+const MovieCard = ({ movie: { id, poster_path, title }, type = 'movie', className}: Props) => {
     return (
-        <article className={styles.displayMovie}>
+        <article className={`${styles.displayMovie} ${className}`}>
             <Link to={`/details/${type}/${id}`}>
                 <img
                     src={getTMDBImageUrl(poster_path ?? '', 'w300')}

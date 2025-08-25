@@ -55,7 +55,11 @@ const Details = () => {
                         <p className={styles.overview}>{content.overview}</p>
 
                         <aside className={`${styles.aside} ${content.overview ? '' : styles.asideNoOverview}`}>
-                            <FavoriteButton type={type as 'movie' | 'tv'} movie={content} className={`${buttonStyles.button} ${styles.button}`} />
+                            <div className={styles.buttonDiv}>
+                                <FavoriteButton type={'favorite'} contentType={type as 'movie' | 'tv'} movie={content} className={`${buttonStyles.button} ${styles.button}`} />
+                                <FavoriteButton type={'watched'} contentType={type as 'movie' | 'tv'} movie={content} className={`${buttonStyles.button} ${styles.button}`} />
+                                <FavoriteButton type={'watchlist'} contentType={type as 'movie' | 'tv'} movie={content} className={`${buttonStyles.button} ${styles.button}`} />
+                            </div>
                             <p>{`${getStarsRating(content.vote_average)} (${content.vote_average})`}</p>
                             <p>{content.status}</p>
                             <p>Original Language: {content.original_language}</p>
