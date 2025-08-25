@@ -6,8 +6,10 @@ interface ActionStore {
     addAction: (data: FavoriteMovie, userId: string, list: 'favorite' | 'watched' | 'watchlist') => FavoriteMovie[];
     removeAction: (id: number, type: 'movie' | 'tv', userId: string, list: 'favorite' | 'watched' | 'watchlist') => FavoriteMovie[];
     getActions: (userId: string, list: 'favorite' | 'watched' | 'watchlist') => FavoriteMovie[];
+    getSomeActions: (userId: string, list: 'favorite' | 'watched' | 'watchlist') => FavoriteMovie[];
     hasAction: (id: number, userId: string, type: 'movie' | 'tv', list: 'favorite' | 'watched' | 'watchlist') => boolean;
     removeUserAction: (userId: string | number) => void;
+    actionIsEmpty: (userId: string, list: 'favorite' | 'watched' | 'watchlist') => boolean;
 }
 
 export const useActionStore = create<ActionStore>((set, get) => ({
@@ -51,6 +53,12 @@ export const useActionStore = create<ActionStore>((set, get) => ({
         if (!user) return [];
         return user[list];
     },
+    getSomeActions: (userId, list) => {
+        if (!userId) return [];
+        const user = get().actions?.find(e => e.userId === userId);
+        if (!user) return [];
+        return user[list].slice(0,5);
+    },
     hasAction: (id, userId, type, list) => {
         const user: FavoriteLists | undefined = get().actions?.find(e => e.userId === userId);
         const contentList: FavoriteMovie[] | undefined = user ? user[list] : undefined;
@@ -63,6 +71,10 @@ export const useActionStore = create<ActionStore>((set, get) => ({
             saveFavoritesToLocal(actions)
             return state.actions ? { actions } : state;
         })
-
+    },
+    actionIsEmpty: (userId, type) => {
+        if(get().getActions(userId ,type).length === 0)
+            return true;
+        return false
     }
 }));

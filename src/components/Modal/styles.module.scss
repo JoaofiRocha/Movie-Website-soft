@@ -1,8 +1,10 @@
 .modal {
     display: none;
     position: fixed;
-    width: 3005vw;
-    height: 305vh;
+    top: 0;
+    left: 0;
+    inset: 0;
+    overflow-y: scroll;
     background-color: rgba(0, 0, 0, 0.6);
     z-index: 999;
     justify-content: center;

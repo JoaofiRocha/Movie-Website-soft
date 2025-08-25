@@ -17,7 +17,7 @@ const DisplayMovie = ({ movie }: Prop) => {
         <article className={styles.displayMovie}>
             {movie ? (
                 <>
-                    <FavoriteButton className={styles.favorite} movie={movie} type={'movie'} />
+                    <FavoriteButton type={'favorite'} className={styles.favorite} movie={movie} contentType={'movie'} />
                     <Link to={`/details/movie/${movie.id}`} className={styles.link} style={{ "--background-image": `url(${imageUrl})` } as React.CSSProperties}>
                         <div className={styles.caption}>
                             <h1 className={styles.captionTitle}> {movie.title}</h1>

@@ -2,7 +2,7 @@ import styles from './styles.module.scss';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getTMDBImageUrl } from '../../util/tmdb';
-import FavoriteButton from '../FavoriteButton';
+import MovieDetailButton from '../MovieDetailButton/index';
 
 interface Props {
     items?: number[];
@@ -12,7 +12,7 @@ interface Props {
     onChangePage?: (page: number) => void;
     hasFilter?: boolean;
     numberOfPages?: number;
-    query?:string;
+    query?: string;
 }
 
 
@@ -22,6 +22,7 @@ const List = ({ className, pageMax = 5, listMovie, onChangePage, hasFilter = tru
     const [movies, setMovies] = useState<Poster[]>(listMovie)
     const [filter, setFilter] = useState<string>('');
     const [filteredList, setFilteredList] = useState<Poster[]>(listMovie)
+    
 
     const pages = numberOfPages ?? Math.ceil(filteredList.length / pageMax);
 
@@ -60,7 +61,7 @@ const List = ({ className, pageMax = 5, listMovie, onChangePage, hasFilter = tru
 
     useEffect(() => {
         setSelectedPage(0);
-    },[query])
+    }, [query])
 
 
     const changePage = (index: number = selectedPage, list: Poster[] = filteredList) => {
@@ -94,12 +95,19 @@ const List = ({ className, pageMax = 5, listMovie, onChangePage, hasFilter = tru
 
                                 <div className={styles.info}>
                                     <h3 className={styles.title}>{movie.title}</h3>
-                                    <p className={styles.p}>{Math.round((movie.rating?? 0) * 10) / 10}</p>
-                                    <p className={styles.p}>{movie.type}</p>
+                                    {movie.area ?
+                                        <p className={styles.p}>{movie.area}</p>
+                                        :
+                                        <>
+                                            <p className={styles.p}>{movie.type}</p>
+                                            <p className={styles.p}>{Math.round((movie.rating ?? 0) * 10) / 10}</p>
+                                        </>
+                                    }
+
                                 </div>
                             </Link>
 
-                            <FavoriteButton type={movie.type as 'movie' | 'tv'} movie={movie} />
+                            <MovieDetailButton movie={movie}/>
                         </li>);
                 })}
             </ul>

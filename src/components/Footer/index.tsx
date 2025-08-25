@@ -12,8 +12,10 @@ const Footer = () => {
                         <li><a href="/">Home</a></li>
                         {user ?
                         <>
-                         <li><a href="/favorites">Favorites</a></li>
-                         <li><a href={`/profile/${user.id}`}>Favorites</a></li>
+                         <li><a href={`list/favorites/${user.id}`}>Favorites</a></li>
+                         <li><a href={`list/watched/${user.id}`}>Watched</a></li>
+                         <li><a href={`list/watchlist/${user.id}`}>Watchlist</a></li>
+                         <li><a href={`/profile/${user.id}`}>Profile</a></li>
                          </>
                         : null}
                     </ul>

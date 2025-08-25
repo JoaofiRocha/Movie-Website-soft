@@ -19,11 +19,18 @@ const SearchDropdown = (({ movies, size = 'w45' }: Props) => {
                 <li key={e.id} className={styles.li}>
                     <Link to={`details/${e.type}/${e.id}`} className={styles.dropdownItem}>
                         {e.poster_path ?
-                            <img src={getTMDBImageUrl(e.poster_path, size)} alt={e.title} /> : <p className={styles.noImage}>X</p>}
+                            <img className={styles.img} src={getTMDBImageUrl(e.poster_path, size)} alt={e.title} /> : <p className={styles.noImage}>X</p>}
+
 
                         <h5 className={styles.title}>{e.title}</h5>
-                        <h6 className={styles.item}>{e.release_year ?? ''}</h6>
-                        <h6 className={styles.item}>{e.rating}</h6>
+                        {e.area ? <h6 className={styles.item}>{e.area}</h6>
+                            :
+                            <>
+                                <h6 className={styles.item}>{e.release_year ?? ''}</h6>
+                                <h6 className={styles.item}>{Math.round((e.rating ?? 0) * 10) / 10}</h6>
+                            </>
+                        }
+
                     </Link>
                 </li>
             ))}

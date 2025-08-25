@@ -30,9 +30,10 @@ function App() {
         <Route path="login" element={<Login />} />
 
         <Route path="profile/:id" element={<Profile />} />
+        <Route path="list/:type/:id" element={<Favorites />} />
 
         <Route element={<PrivateRoutes />}>
-          <Route path="favorites" element={<Favorites />} />
+          
 
           <Route path="settings/" element={<Settings />}>
             <Route path="delete" element={<DeleteAccount />} />
